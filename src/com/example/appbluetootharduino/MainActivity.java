@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -32,7 +33,7 @@ import android.util.Log;
  * @author Administrador
  */
 public class MainActivity extends Activity {
-	
+
 	Set<BluetoothDevice> devicesArray;
 	ArrayList<String> pairedDevices;
 	ArrayList<BluetoothDevice> devices;
@@ -50,7 +51,7 @@ public class MainActivity extends Activity {
 
 	// BluetoothAdapter é comando de entrada padrão paras todads interações com
 	// Bluetooth
-	private BluetoothAdapter BluetoothPadrão = null;
+	private BluetoothAdapter bluetoothPadrao = null;
 
 	// BluetoothSocket é um ponto de conexão que permite trocar dados com outro
 	// disposivo
@@ -78,8 +79,7 @@ public class MainActivity extends Activity {
 	/**
 	 * Criação da tela
 	 */
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -87,11 +87,13 @@ public class MainActivity extends Activity {
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
 		// Liga com o layout da tela
 		setContentView(R.layout.activity_main);
+		ActionBar ab = getActionBar();
+		ab.setDisplayHomeAsUpEnabled(true);
+		ab.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg));
 
 		// Referencia dos botoes do Activity_main.xml pelos ID
-		
+
 		ToggleButton btnConectar2 = (ToggleButton) findViewById(R.id.btnConectar);
-		
 
 		btnFrente = (Button) findViewById(R.id.bt_frente);
 
@@ -104,21 +106,21 @@ public class MainActivity extends Activity {
 		btn4 = (Button) findViewById(R.id.bt_a);
 		btn5 = (Button) findViewById(R.id.bt_b);
 		btn6 = (Button) findViewById(R.id.bt_c);
-		
+
 		btn1.setId(1);
 		MyTouchListener touchListener = new MyTouchListener();
-	    btn1.setOnTouchListener(touchListener);
+		btn1.setOnTouchListener(touchListener);
 
 		// Obtem o bluetooth padrao do aparelho celular
-		BluetoothPadrão = BluetoothAdapter.getDefaultAdapter();
+		bluetoothPadrao = BluetoothAdapter.getDefaultAdapter();
 
 		// Vereficamos se o aparelho possui adaptador Bluetooth
-		if (BluetoothPadrão == null) {
+		if (bluetoothPadrao == null) {
 			Toast.makeText(getApplicationContext(), "Dispostivo nao possui Bluetooth", Toast.LENGTH_LONG).show();
 			finish();
 			return;
 		}
-		if (!BluetoothPadrão.isEnabled()) {
+		if (!bluetoothPadrao.isEnabled()) {
 			Intent novoIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 			startActivityForResult(novoIntent, REQUEST_ENABLE_BT);
 		}
@@ -202,24 +204,21 @@ public class MainActivity extends Activity {
 				return false;
 			}
 		});
-/*
-		btn1.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View view, final MotionEvent motionEvent) {
-
-				dadosParaEnvio = "e";
-				EnviarDados(dadosParaEnvio);
-
-				return false;
-			}
-		});*/
+		/*
+		 * btn1.setOnTouchListener(new View.OnTouchListener() {
+		 * 
+		 * @Override public boolean onTouch(View view, final MotionEvent
+		 * motionEvent) {
+		 * 
+		 * dadosParaEnvio = "e"; EnviarDados(dadosParaEnvio);
+		 * 
+		 * return false; } });
+		 */
 
 		btn2.setOnTouchListener(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
-				
-				
+
 				dadosParaEnvio = "e";
 				EnviarDados(dadosParaEnvio);
 
@@ -270,41 +269,37 @@ public class MainActivity extends Activity {
 				return false;
 			}
 		});
-		
-		
-		
+
 	}
-	
+
 	public class MyTouchListener implements OnTouchListener {
-	    @Override
-	    public boolean onTouch(View v, MotionEvent event) {
-	        switch(v.getId()){
-	            case 1:
-	            	dadosParaEnvio = "e";
-					EnviarDados(dadosParaEnvio);
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			switch (v.getId()) {
+			case 1:
+				dadosParaEnvio = "e";
+				EnviarDados(dadosParaEnvio);
 
-	                break;
-	            case 2:
-	                //do stuff for button 2
-	                break;
-	            case 3:
-	                //do stuff for button 3
-	                break;
-	            case 4:
-	                //do stuff for button 4
-	                break;
-	        }
-	        return true;
-	    }
+				break;
+			case 2:
+				// do stuff for button 2
+				break;
+			case 3:
+				// do stuff for button 3
+				break;
+			case 4:
+				// do stuff for button 4
+				break;
+			}
+			return true;
+		}
 
 	}
-
-	
 
 	private void getPairedDevices() {
-		devicesArray = BluetoothPadrão.getBondedDevices();
-		if (devicesArray.size()>0){
-			for(BluetoothDevice device:devicesArray){
+		devicesArray = bluetoothPadrao.getBondedDevices();
+		if (devicesArray.size() > 0) {
+			for (BluetoothDevice device : devicesArray) {
 				pairedDevices.add(device.getName());
 			}
 		}
@@ -374,7 +369,7 @@ public class MainActivity extends Activity {
 	 */
 	public void conectar() {
 		if (btSocket == null) {
-			BluetoothDevice device = BluetoothPadrão.getRemoteDevice(mac);
+			BluetoothDevice device = bluetoothPadrao.getRemoteDevice(mac);
 
 			try {
 				btSocket = device.createInsecureRfcommSocketToServiceRecord(MEU_UUID);
@@ -413,8 +408,11 @@ public class MainActivity extends Activity {
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+
+		
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.menu, menu);
 		return true;
 	}
 
@@ -423,6 +421,28 @@ public class MainActivity extends Activity {
 	 * 
 	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
 	 */
+	@Override
+	public boolean onMenuItemSelected(int panel, MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			Toast.makeText(this, "logo botao" , Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.item1:
+			Toast.makeText(this, "Item" + (item.getItemId() + 1), Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.item2:
+			Toast.makeText(this, "Item" + (item.getItemId() + 1), Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.item3:
+			Toast.makeText(this, "Item" + (item.getItemId() + 1), Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.item4:
+			Toast.makeText(this, "Item" + (item.getItemId() + 1), Toast.LENGTH_SHORT).show();
+			break;
+		}
+
+		return true;
+	};
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

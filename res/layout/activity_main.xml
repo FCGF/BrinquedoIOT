@@ -109,12 +109,14 @@
                 android:id="@+id/bt_x"
                 android:layout_width="70.0dip"
                 android:layout_height="70.0dip"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/layout_botao_x" />
 
             <Button
                 android:id="@id/bt_y"
                 android:layout_width="70.0dip"
                 android:layout_height="70.0dip"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/layout_botao_y" />
 
             <Button
@@ -138,12 +140,14 @@
                 android:id="@id/bt_a"
                 android:layout_width="70.0dip"
                 android:layout_height="70.0dip"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/layout_botao_a" />
 
             <Button
                 android:id="@id/bt_b"
                 android:layout_width="70.0dip"
                 android:layout_height="70.0dip"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/layout_botao_b" />
 
             <Button
