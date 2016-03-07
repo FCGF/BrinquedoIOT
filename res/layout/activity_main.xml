@@ -17,7 +17,7 @@
         android:layout_centerInParent="true"
         android:textAllCaps="true"
         android:textOff="Conectar"
-        android:textOn="Desconectar"
+        android:textOn="Desconect"
         android:textSize="13.0dip"
         android:textStyle="bold" />
 
@@ -73,6 +73,15 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:orientation="vertical" >
+        
+        <TextView
+        android:id="@+id/txtArduino"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="" 
+        android:visibility="invisible"/>
 <!--  
         <ImageView
             android:layout_width="60.0dip"
