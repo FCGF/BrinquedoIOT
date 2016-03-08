@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
-
-
+import android.R.layout;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -19,6 +18,7 @@ import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -44,13 +44,17 @@ public class MainActivity extends Activity {
 	Set<BluetoothDevice> devicesArray;
 	ArrayList<String> pairedDevices;
 	ArrayList<BluetoothDevice> devices;
+	LayoutInflater layoutInflater;
+	private StringBuilder sb = new StringBuilder();
 
 	// Representas os botoes
 	// Que ao ser pressioando pelo usuario executa uma ação
 	Button btnConectar, btnDesconectar, btnFrente, btnDireita, btnEsquerda, btnTras, btn1, btn2, btn3, btn4, btn5, btn6;
 	ToggleButton btnConectar2;
 
+	View dados;
 	TextView txtArduino;
+
 	private ConnectedThread mConnectedThread;
 
 	// Requisição para Activity de ativação do Bluetooth
@@ -97,9 +101,12 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		ActionBar ab = getActionBar();
 		ab.setDisplayHomeAsUpEnabled(true);
-		ab.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg));
+		// ab.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg));
 
 		// Referencia dos botoes do Activity_main.xml pelos ID
+
+		dados = (View) findViewById(R.id.dados);
+
 		txtArduino = (TextView) findViewById(R.id.txtArduino);
 
 		ToggleButton btnConectar2 = (ToggleButton) findViewById(R.id.btnConectar);
@@ -116,12 +123,6 @@ public class MainActivity extends Activity {
 		btn5 = (Button) findViewById(R.id.bt_b);
 		btn6 = (Button) findViewById(R.id.bt_c);
 
-		btn1.setId(1);
-		MyTouchListener touchListener = new MyTouchListener();
-		btn1.setOnTouchListener(touchListener);
-
-		
-		
 		// Obtem o bluetooth padrao do aparelho celular
 		bluetoothPadrao = BluetoothAdapter.getDefaultAdapter();
 
@@ -135,29 +136,26 @@ public class MainActivity extends Activity {
 			Intent novoIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 			startActivityForResult(novoIntent, REQUEST_ENABLE_BT);
 		}
-		
+
 		h = new Handler() {
 			public void handleMessage(android.os.Message msg) {
 				switch (msg.what) {
 				case RECIEVE_MESSAGE: // if receive massage
 					byte[] readBuf = (byte[]) msg.obj;
-					String strIncom = new String(readBuf, 0, msg.arg1); // create
-																		// string
-																		// from
-					txtArduino.setText(strIncom);						// bytes
-				
-					/*													// array
-					sb.append(strIncom); // append string
-					int endOfLineIndex = sb.indexOf("\r\n"); // determine the
-																// end-of-line
-					if (endOfLineIndex > 0) { // if end-of-line,
-						String sbprint = sb.substring(0, endOfLineIndex); // extract
-																			// string
-						sb.delete(0, sb.length()); // and clear
-						txtArduino.setText("Data from Arduino: " + sbprint); // update
-																				// TextView
+					String strIncom = new String(readBuf, 0, msg.arg1);
 
-					}*/
+					 txtArduino.setText(strIncom);
+					// txtArduino.clearComposingText();
+
+					//sb.append(strIncom);
+					//sb.indexOf("\r\n");
+					
+						
+					
+				   // txtArduino.setText(readBuf.toString());
+				    //sb.delete(0, sb.length());	
+					
+
 					// Log.d(TAG, "...String:"+ sb.toString() + "Byte:" +
 					// msg.arg1 + "...");
 					break;
@@ -244,16 +242,18 @@ public class MainActivity extends Activity {
 				return false;
 			}
 		});
-		/*
-		 * btn1.setOnTouchListener(new View.OnTouchListener() {
-		 * 
-		 * @Override public boolean onTouch(View view, final MotionEvent
-		 * motionEvent) {
-		 * 
-		 * dadosParaEnvio = "e"; EnviarDados(dadosParaEnvio);
-		 * 
-		 * return false; } });
-		 */
+
+		btn1.setOnTouchListener(new View.OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View view, final MotionEvent motionEvent) {
+
+				dadosParaEnvio = "e";
+				EnviarDados(dadosParaEnvio);
+
+				return false;
+			}
+		});
 
 		btn2.setOnTouchListener(new View.OnTouchListener() {
 			@Override
@@ -312,38 +312,6 @@ public class MainActivity extends Activity {
 
 	}
 
-	public class MyTouchListener implements OnTouchListener {
-		@Override
-		public boolean onTouch(View v, MotionEvent event) {
-			switch (v.getId()) {
-			case 1:
-				dadosParaEnvio = "e";
-				EnviarDados(dadosParaEnvio);
-
-				break;
-			case 2:
-				// do stuff for button 2
-				break;
-			case 3:
-				// do stuff for button 3
-				break;
-			case 4:
-				// do stuff for button 4
-				break;
-			}
-			return true;
-		}
-
-	}
-
-	private void getPairedDevices() {
-		devicesArray = bluetoothPadrao.getBondedDevices();
-		if (devicesArray.size() > 0) {
-			for (BluetoothDevice device : devicesArray) {
-				pairedDevices.add(device.getName());
-			}
-		}
-	}
 	private class ConnectedThread extends Thread {
 		private final InputStream mmInStream;
 		private final OutputStream mmOutStream;
@@ -375,7 +343,7 @@ public class MainActivity extends Activity {
 					bytes = mmInStream.read(buffer); // Get number of bytes and
 														// message in "buffer"
 					h.obtainMessage(RECIEVE_MESSAGE, bytes, -1, buffer).sendToTarget(); // Send
-																						// to
+																				// to
 																						// message
 																						// queue
 																						// Handler
@@ -494,7 +462,6 @@ public class MainActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 
-		
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.menu, menu);
 		return true;
@@ -509,36 +476,45 @@ public class MainActivity extends Activity {
 	public boolean onMenuItemSelected(int panel, MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			Toast.makeText(this, "Sair" , Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Sair", Toast.LENGTH_SHORT).show();
 			finish();
 			break;
 		case R.id.item1:
-			//Toast.makeText(this, "test" + (item.getItemId() + 1), Toast.LENGTH_SHORT).show();
+			// Toast.makeText(this, "test" + (item.getItemId() + 1),
+			// Toast.LENGTH_SHORT).show();
 			boolean mostrar = true;
-			
-			if(mostrar == true){
+
+			if (mostrar == true) {
 				txtArduino.setVisibility(View.INVISIBLE);
 				Toast.makeText(getApplicationContext(), "Invisible", Toast.LENGTH_LONG).show();
 				mostrar = false;
-			}else{
+			} else {
 				txtArduino.setVisibility(View.VISIBLE);
 				Toast.makeText(getApplicationContext(), "Visible", Toast.LENGTH_LONG).show();
 				mostrar = true;
 			}
-			
-			
+
 			break;
 		case R.id.item2:
 			Toast.makeText(this, "So mostro meu ID XD: " + (item.getItemId() + 1), Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.item3:
+
+			break;
+		case R.id.item4:
+
+			break;
+		case R.id.item6:
+			dados.setVisibility(View.VISIBLE);
 			txtArduino.setVisibility(View.VISIBLE);
 			Toast.makeText(getApplicationContext(), "Visible", Toast.LENGTH_LONG).show();
 			break;
-		case R.id.item4:
+		case R.id.item7:
+			dados.setVisibility(View.INVISIBLE);
 			txtArduino.setVisibility(View.INVISIBLE);
 			Toast.makeText(getApplicationContext(), "Invisible", Toast.LENGTH_LONG).show();
 			break;
+
 		}
 
 		return true;

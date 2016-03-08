@@ -68,20 +68,24 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="100.0dip"
-        android:layout_height="wrap_content"
+        android:id="@+id/dados"
+        android:layout_width="400.0dip"
+        android:layout_height="150.0dip"
         android:layout_centerInParent="true"
+        android:background="@color/Black"
         android:gravity="center"
-        android:orientation="vertical" >
-        
+        android:orientation="vertical"
+        android:visibility="invisible" >
+
         <TextView
-        android:id="@+id/txtArduino"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="" 
-        android:visibility="invisible"/>
+            android:id="@+id/txtArduino"
+            android:layout_width="395dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.32"
+            android:textColor="@color/White"
+            android:textSize="24dp"
+            android:visibility="invisible" />
+
 <!--  
         <ImageView
             android:layout_width="60.0dip"

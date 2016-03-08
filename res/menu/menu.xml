@@ -3,7 +3,7 @@
     <item
         android:id="@+id/item1"
         android:showAsAction="always"
-        android:title="Trocar"/>
+        android:title="1"/>
      <item
         android:id="@+id/item2"
         android:showAsAction="ifRoom|withText"
@@ -11,10 +11,24 @@
       <item
         android:id="@+id/item3"
         android:showAsAction="never"
-        android:title="Mostrar"/>
+        android:title="2"/>
       <item
         android:id="@+id/item4"
         android:showAsAction="never"
-        android:title="Ocultar"/>
+        android:title="3"/>
+      <item
+        android:id="@+id/item5"
+        android:showAsAction="never"
+        android:title="Dados arduino">
+        <menu>
+            <item 
+                android:id="@+id/item6"
+                android:title="Mostrar" />
+            <item 
+                android:id="@+id/item7"
+                android:title="Ocultar" />
+        </menu>
+       
+    </item>
 
 </menu>
