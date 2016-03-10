@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
+
+
 import android.R.layout;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -18,6 +20,7 @@ import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,8 +57,12 @@ public class MainActivity extends Activity {
 
 	View dados;
 	TextView txtArduino;
+	
+	BluetoothThread btt;
 
-	private ConnectedThread mConnectedThread;
+	//private ConnectedThread mConnectedThread;
+	
+	Handler writeHandler;
 
 	// Requisição para Activity de ativação do Bluetooth
 	// Se numero for maior > 0,este codigo sera devolvido em onActivityResult()
@@ -79,15 +86,16 @@ public class MainActivity extends Activity {
 	private String dadosParaEnvio;
 
 	// Para armazenar o endereço MAC do modulo Bluetooth
-	private static String mac = "20:13:06:19:08:29";
+	private static String address = "20:13:06:19:08:29";
 
 	// Um Universally Unique IDentifier(UUID) é um formato padronizado para ID
 	// string de 128 bits
 	// usado para identificar de forma unica.
 	private static final UUID MEU_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
-	private boolean clicando = true;
-
+	
+	boolean ativado = false;
+	
 	/**
 	 * Criação da tela
 	 */
@@ -109,7 +117,9 @@ public class MainActivity extends Activity {
 
 		txtArduino = (TextView) findViewById(R.id.txtArduino);
 
-		ToggleButton btnConectar2 = (ToggleButton) findViewById(R.id.btnConectar);
+		btnConectar = (Button)findViewById(R.id.btnConectar);
+		btnConectar.setText("Conectar");
+		//final ToggleButton btnConectar2 = (ToggleButton) findViewById(R.id.btnConectar);
 
 		btnFrente = (Button) findViewById(R.id.bt_frente);
 
@@ -137,84 +147,39 @@ public class MainActivity extends Activity {
 			startActivityForResult(novoIntent, REQUEST_ENABLE_BT);
 		}
 
-		h = new Handler() {
-			public void handleMessage(android.os.Message msg) {
-				switch (msg.what) {
-				case RECIEVE_MESSAGE: // if receive massage
-					byte[] readBuf = (byte[]) msg.obj;
-					String strIncom = new String(readBuf, 0, msg.arg1);
-
-					 txtArduino.setText(strIncom);
-					// txtArduino.clearComposingText();
-
-					//sb.append(strIncom);
-					//sb.indexOf("\r\n");
-					
-						
-					
-				   // txtArduino.setText(readBuf.toString());
-				    //sb.delete(0, sb.length());	
-					
-
-					// Log.d(TAG, "...String:"+ sb.toString() + "Byte:" +
-					// msg.arg1 + "...");
-					break;
-				}
-			};
-		};
-
-		btnConectar2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (isChecked) {
-					conectar();
-				} else {
-					desconectar();
-
-				}
-			}
-		});
-		// Definição de interface para ser chamada quando um Botao é clicado.
-		/*
-		 * btnConectar.setOnClickListener(new View.OnClickListener() {
-		 * 
-		 * // Ativa quando o botão é clicado.
-		 * 
-		 * @Override public void onClick(View v) {
-		 * 
-		 * // Chama a função que ira conectar o Bluetooth
-		 * 
-		 * conectar();
-		 * 
-		 * }
-		 * 
-		 * });
-		 * 
-		 * btnDesconectar.setOnClickListener(new View.OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { // Chama a função para
-		 * desconectar o Bluetooth desconectar();
-		 * 
-		 * } });
-		 */
 		btnFrente.setOnTouchListener(new View.OnTouchListener() {
 
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				dadosParaEnvio = "e";
-				EnviarDados(dadosParaEnvio);
-
+			     dadosParaEnvio = "a";
+				 EnviarDados(dadosParaEnvio);
+				 /*
+				if(btt != null){
+					Message msg = Message.obtain();
+			        msg.obj = "a";
+			        writeHandler.sendMessage(msg);
+				}else{
+					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
+				}*/
+				
+		        
 				return false;
 			}
 		});
-
+		
 		btnDireita.setOnTouchListener(new View.OnTouchListener() {
 
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				dadosParaEnvio = "e";
-				EnviarDados(dadosParaEnvio);
+				if(btt != null){
+					Message msg = Message.obtain();
+			        msg.obj = "b";
+			        writeHandler.sendMessage(msg);
+				}else{
+					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
+				}
 
 				return false;
 			}
@@ -225,9 +190,13 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				dadosParaEnvio = "e";
-				EnviarDados(dadosParaEnvio);
-
+				if(btt != null){
+					Message msg = Message.obtain();
+			        msg.obj = "c";
+			        writeHandler.sendMessage(msg);
+				}else{
+					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
+				}
 				return false;
 			}
 		});
@@ -236,8 +205,13 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				dadosParaEnvio = "e";
-				EnviarDados(dadosParaEnvio);
+				if(btt != null){
+					Message msg = Message.obtain();
+			        msg.obj = "d";
+			        writeHandler.sendMessage(msg);
+				}else{
+					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
+				}
 
 				return false;
 			}
@@ -248,8 +222,13 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				dadosParaEnvio = "e";
-				EnviarDados(dadosParaEnvio);
+				if(btt != null){
+					Message msg = Message.obtain();
+			        msg.obj = "e";
+			        writeHandler.sendMessage(msg);
+				}else{
+					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
+				}
 
 				return false;
 			}
@@ -259,9 +238,13 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				dadosParaEnvio = "e";
-				EnviarDados(dadosParaEnvio);
-
+				if(btt != null){
+					Message msg = Message.obtain();
+			        msg.obj = "f";
+			        writeHandler.sendMessage(msg);
+				}else{
+					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
+				}
 				return false;
 			}
 		});
@@ -270,9 +253,14 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				dadosParaEnvio = "g";
-				EnviarDados(dadosParaEnvio);
-
+				if(btt != null){
+					Message msg = Message.obtain();
+			        msg.obj = "g";
+			        writeHandler.sendMessage(msg);
+				}else{
+					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
+				}
+		        
 				return false;
 			}
 		});
@@ -281,8 +269,13 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				dadosParaEnvio = "h";
-				EnviarDados(dadosParaEnvio);
+				if(btt != null){
+					Message msg = Message.obtain();
+			        msg.obj = "h";
+			        writeHandler.sendMessage(msg);
+				}else{
+					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
+				}
 
 				return false;
 			}
@@ -292,8 +285,13 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				dadosParaEnvio = "i";
-				EnviarDados(dadosParaEnvio);
+				if(btt != null){
+					Message msg = Message.obtain();
+			        msg.obj = "i";
+			        writeHandler.sendMessage(msg);
+				}else{
+					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
+				}
 
 				return false;
 			}
@@ -303,8 +301,13 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				dadosParaEnvio = "j";
-				EnviarDados(dadosParaEnvio);
+				if(btt != null){
+					Message msg = Message.obtain();
+			        msg.obj = "j";
+			        writeHandler.sendMessage(msg);
+				}else{
+					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
+				}
 
 				return false;
 			}
@@ -312,6 +315,61 @@ public class MainActivity extends Activity {
 
 	}
 
+	public void connectButtonPressed(View v) {
+	   
+		btnConectar = (Button)findViewById(R.id.btnConectar);
+		if(btt == null){
+			
+			btt = new BluetoothThread(address, new Handler() {
+
+	            @Override
+	            public void handleMessage(Message message) {
+
+	                String s = (String) message.obj;
+
+	                // Do something with the message
+	                if (s.equals("CONNECTED")) {
+	                	btnConectar.setText("Desconectar");
+	                    btnConectar.setEnabled(true);
+	                   
+	                    // ativado = true;
+	                } else if (s.equals("DISCONNECTED")) {
+	                   
+	                    //tv.setText("Disconnected.");
+	                } else if (s.equals("CONNECTION FAILED")) {
+	                    
+	                    //tv.setText("Connection failed!");
+	                    btt = null;
+	                } else {
+	                    TextView tv = (TextView) findViewById(R.id.txtArduino);
+	                    tv.setText(s);
+	                }
+	            }
+	        });
+		}else{
+			btnConectar.setText("Conectar");
+			//ativado = false;
+			//if(btt != null) {
+	            btt.interrupt();
+	           btt = null;
+	        //}
+			
+		}
+		
+
+		if(btt != null) {
+        // Get the handler that is used to send messages
+        writeHandler = btt.getWriteHandler();
+
+        // Run the thread
+        btt.start();
+
+        TextView tv = (TextView) findViewById(R.id.btnConectar);
+        btnConectar.setText("Connecting...");
+        //btnConectar.setEnabled(false);
+		}
+	}
+	/*
 	private class ConnectedThread extends Thread {
 		private final InputStream mmInStream;
 		private final OutputStream mmOutStream;
@@ -383,11 +441,11 @@ public class MainActivity extends Activity {
 	 * Permite a saida de dados a partir de um socket
 	 */
 	public void EnviarDados(String data) {
-		if (btSocket != null) {
+		if (btt != null) {//btSocket
 
 			try {
 
-				outStream = btSocket.getOutputStream();
+				outStream = btt.socket.getOutputStream();//btSocket
 			} catch (IOException e) {
 				// TODO Colocar o tratamento da excecao (uma mensagem de erro
 				// deve
@@ -416,10 +474,10 @@ public class MainActivity extends Activity {
 	 * BluetoothAdapter.getRemoteDevice(String) Para representar um dispostivo
 	 * de um endereço MAC conhecido ou obter a partir de um conjunto de
 	 * dispositovos pareados a partir do BluetoothAdapter.getBondedDevices()
-	 */
+	 *//*
 	public void conectar() {
 		if (btSocket == null) {
-			BluetoothDevice device = bluetoothPadrao.getRemoteDevice(mac);
+			BluetoothDevice device = bluetoothPadrao.getRemoteDevice(address);
 
 			try {
 				btSocket = device.createInsecureRfcommSocketToServiceRecord(MEU_UUID);
@@ -439,7 +497,7 @@ public class MainActivity extends Activity {
 
 	/**
 	 * Desconeta o dispositivo
-	 */
+	 *//*
 	public void desconectar() {
 		if (btSocket != null) {
 			try {
@@ -453,7 +511,7 @@ public class MainActivity extends Activity {
 			Toast.makeText(getApplicationContext(), "Ja esta desconectado", Toast.LENGTH_LONG).show();
 		}
 
-	}
+	}*/
 
 	/**
 	 * Apresenta a barra de menu
@@ -528,5 +586,14 @@ public class MainActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	protected void onPause() {
+        super.onPause();
+
+        if(btt != null) {
+            btt.interrupt();
+            btt = null;
+        }
+    }
 
 }

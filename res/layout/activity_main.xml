@@ -8,18 +8,19 @@
     android:paddingRight="8.0dip"
     android:paddingTop="@dimen/activity_vertical_margin" >
 
-    <ToggleButton
-        android:id="@+id/btnConectar"
-        style="android:buttonStyle"
-        android:layout_width="100.0dip"
-        android:layout_height="40.0dip"
+    <Button
+        android:id="@id/btnConectar"
+        android:layout_width="120.0dip"
+        android:layout_height="30.0dip"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
+        android:background="@drawable/connect_ani"
+        android:text=""
         android:textAllCaps="true"
-        android:textOff="Conectar"
-        android:textOn="Desconect"
+        android:textColor="@color/White"
         android:textSize="13.0dip"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:onClick="connectButtonPressed" />
 
     <LinearLayout
         android:id="@id/linearLayout3"
