@@ -1,3 +1,3 @@
 # BrinquedoIOT
 
-App de controle para robos trekking pelo arduino transmitos pelo bluetooth.
+App de controle para robos trekking pelo arduino transmitidos pelo bluetooth.
