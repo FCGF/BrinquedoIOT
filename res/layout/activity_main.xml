@@ -15,12 +15,12 @@
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:background="@drawable/connect_ani"
+        android:onClick="connectButtonPressed"
         android:text=""
         android:textAllCaps="true"
         android:textColor="@color/White"
         android:textSize="13.0dip"
-        android:textStyle="bold"
-        android:onClick="connectButtonPressed" />
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@id/linearLayout3"
@@ -83,11 +83,14 @@
             android:layout_width="395dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.32"
+            android:lines="4"
+            android:maxLines="4"
+            android:ellipsize="end"
             android:textColor="@color/White"
             android:textSize="24dp"
             android:visibility="invisible" />
 
-<!--  
+        <!--
         <ImageView
             android:layout_width="60.0dip"
             android:layout_height="60.0dip"
@@ -100,7 +103,8 @@
             android:layout_marginTop="6.0dip"
             android:gravity="center"
             android:textColor="@color/White"
-            android:textSize="12.0sp" />-->
+            android:textSize="12.0sp" />
+        -->
     </LinearLayout>
 
     <LinearLayout
@@ -180,8 +184,8 @@
     </RelativeLayout>
 
 </RelativeLayout>
-
-<!--  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -314,4 +318,5 @@
         android:layout_alignLeft="@+id/button5"
         android:background="@drawable/layout_botao_y" />
 
-</RelativeLayout>-->
+</RelativeLayout>
+-->

@@ -174,10 +174,11 @@ public class BluetoothThread extends Thread {
 
         try {
             // Add the delimiter
-            s += DELIMITER;
-
+            //s += DELIMITER;
+        	byte[] msgBuffer = s.getBytes();
             // Convert to bytes and write
-            outStream.write(s.getBytes());
+            //outStream.write(s.getBytes());
+        	outStream.write(msgBuffer);
             Log.i(TAG, "[SENT] " + s);
 
         } catch (Exception e) {
@@ -207,6 +208,7 @@ public class BluetoothThread extends Thread {
         // If there is none, exit
         if (inx == -1)
             return;
+        
 
         // Get the complete message
         String s = rx_buffer.substring(0, inx);

@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
-
-
 import android.R.layout;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -41,6 +39,16 @@ import android.util.Log;
  * @author Administrador
  */
 public class MainActivity extends Activity {
+	String frente = "a";
+	String direita = "b";
+	String esquerda = "c";
+	String tras = "d";
+	String x = "e";
+	String y = "f";
+	String z = "g";
+	String a = "h";
+	String b = "i";
+	String c = "j";
 
 	Handler h;
 	final int RECIEVE_MESSAGE = 1;
@@ -57,16 +65,17 @@ public class MainActivity extends Activity {
 
 	View dados;
 	TextView txtArduino;
-	
+
 	BluetoothThread btt;
 
-	//private ConnectedThread mConnectedThread;
-	
+	// private ConnectedThread mConnectedThread;
+
 	Handler writeHandler;
 
 	// Requisição para Activity de ativação do Bluetooth
 	// Se numero for maior > 0,este codigo sera devolvido em onActivityResult()
 	private static final int REQUEST_ENABLE_BT = 1;
+	public static final int SELECT_PAIRED_DEVICE = 2;
 
 	// BluetoothAdapter é comando de entrada padrão paras todads interações com
 	// Bluetooth
@@ -93,9 +102,8 @@ public class MainActivity extends Activity {
 	// usado para identificar de forma unica.
 	private static final UUID MEU_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
-	
 	boolean ativado = false;
-	
+
 	/**
 	 * Criação da tela
 	 */
@@ -117,9 +125,10 @@ public class MainActivity extends Activity {
 
 		txtArduino = (TextView) findViewById(R.id.txtArduino);
 
-		btnConectar = (Button)findViewById(R.id.btnConectar);
+		btnConectar = (Button) findViewById(R.id.btnConectar);
 		btnConectar.setText("Conectar");
-		//final ToggleButton btnConectar2 = (ToggleButton) findViewById(R.id.btnConectar);
+		// final ToggleButton btnConectar2 = (ToggleButton)
+		// findViewById(R.id.btnConectar);
 
 		btnFrente = (Button) findViewById(R.id.bt_frente);
 
@@ -152,32 +161,31 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-			     dadosParaEnvio = "a";
+				 dadosParaEnvio = "a";
 				 EnviarDados(dadosParaEnvio);
-				 /*
-				if(btt != null){
+/*
+				if (btt != null) {
 					Message msg = Message.obtain();
-			        msg.obj = "a";
-			        writeHandler.sendMessage(msg);
-				}else{
+					msg.obj = "a";
+					writeHandler.sendMessage(msg);
+				} else {
 					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
 				}*/
-				
-		        
+
 				return false;
 			}
 		});
-		
+
 		btnDireita.setOnTouchListener(new View.OnTouchListener() {
 
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				if(btt != null){
+				if (btt != null) {
 					Message msg = Message.obtain();
-			        msg.obj = "b";
-			        writeHandler.sendMessage(msg);
-				}else{
+					msg.obj = "b";
+					writeHandler.sendMessage(msg);
+				} else {
 					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
 				}
 
@@ -190,11 +198,11 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				if(btt != null){
+				if (btt != null) {
 					Message msg = Message.obtain();
-			        msg.obj = "c";
-			        writeHandler.sendMessage(msg);
-				}else{
+					msg.obj = "c";
+					writeHandler.sendMessage(msg);
+				} else {
 					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
 				}
 				return false;
@@ -205,11 +213,11 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				if(btt != null){
+				if (btt != null) {
 					Message msg = Message.obtain();
-			        msg.obj = "d";
-			        writeHandler.sendMessage(msg);
-				}else{
+					msg.obj = "d";
+					writeHandler.sendMessage(msg);
+				} else {
 					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
 				}
 
@@ -222,11 +230,11 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				if(btt != null){
+				if (btt != null) {
 					Message msg = Message.obtain();
-			        msg.obj = "e";
-			        writeHandler.sendMessage(msg);
-				}else{
+					msg.obj = "e";
+					writeHandler.sendMessage(msg);
+				} else {
 					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
 				}
 
@@ -238,11 +246,11 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				if(btt != null){
+				if (btt != null) {
 					Message msg = Message.obtain();
-			        msg.obj = "f";
-			        writeHandler.sendMessage(msg);
-				}else{
+					msg.obj = "f";
+					writeHandler.sendMessage(msg);
+				} else {
 					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
 				}
 				return false;
@@ -253,14 +261,14 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				if(btt != null){
+				if (btt != null) {
 					Message msg = Message.obtain();
-			        msg.obj = "g";
-			        writeHandler.sendMessage(msg);
-				}else{
+					msg.obj = "g";
+					writeHandler.sendMessage(msg);
+				} else {
 					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
 				}
-		        
+
 				return false;
 			}
 		});
@@ -269,11 +277,11 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				if(btt != null){
+				if (btt != null) {
 					Message msg = Message.obtain();
-			        msg.obj = "h";
-			        writeHandler.sendMessage(msg);
-				}else{
+					msg.obj = "h";
+					writeHandler.sendMessage(msg);
+				} else {
 					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
 				}
 
@@ -285,11 +293,11 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				if(btt != null){
+				if (btt != null) {
 					Message msg = Message.obtain();
-			        msg.obj = "i";
-			        writeHandler.sendMessage(msg);
-				}else{
+					msg.obj = "i";
+					writeHandler.sendMessage(msg);
+				} else {
 					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
 				}
 
@@ -301,11 +309,11 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onTouch(View view, final MotionEvent motionEvent) {
 
-				if(btt != null){
+				if (btt != null) {
 					Message msg = Message.obtain();
-			        msg.obj = "j";
-			        writeHandler.sendMessage(msg);
-				}else{
+					msg.obj = "j";
+					writeHandler.sendMessage(msg);
+				} else {
 					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
 				}
 
@@ -316,106 +324,59 @@ public class MainActivity extends Activity {
 	}
 
 	public void connectButtonPressed(View v) {
-	   
-		btnConectar = (Button)findViewById(R.id.btnConectar);
-		if(btt == null){
-			
-			btt = new BluetoothThread(address, new Handler() {
-
-	            @Override
-	            public void handleMessage(Message message) {
-
-	                String s = (String) message.obj;
-
-	                // Do something with the message
-	                if (s.equals("CONNECTED")) {
-	                	btnConectar.setText("Desconectar");
-	                    btnConectar.setEnabled(true);
-	                   
-	                    // ativado = true;
-	                } else if (s.equals("DISCONNECTED")) {
-	                   
-	                    //tv.setText("Disconnected.");
-	                } else if (s.equals("CONNECTION FAILED")) {
-	                    
-	                    //tv.setText("Connection failed!");
-	                    btt = null;
-	                } else {
-	                    TextView tv = (TextView) findViewById(R.id.txtArduino);
-	                    tv.setText(s);
-	                }
-	            }
-	        });
-		}else{
+		if (btt == null) {
+			Intent searchPairedDevicesIntent = new Intent(this, PairedDevices.class);
+			startActivityForResult(searchPairedDevicesIntent, SELECT_PAIRED_DEVICE);
+		} else {
 			btnConectar.setText("Conectar");
-			//ativado = false;
-			//if(btt != null) {
-	            btt.interrupt();
-	           btt = null;
-	        //}
-			
+			// ativado = false;
+			// if(btt != null) {
+			btt.interrupt();
+			btt = null;
+			// }
 		}
-		
 
-		if(btt != null) {
-        // Get the handler that is used to send messages
-        writeHandler = btt.getWriteHandler();
+		if (btt != null) {
+			// Get the handler that is used to send messages
+			writeHandler = btt.getWriteHandler();
 
-        // Run the thread
-        btt.start();
+			// Run the thread
+			btt.start();
 
-        TextView tv = (TextView) findViewById(R.id.btnConectar);
-        btnConectar.setText("Connecting...");
-        //btnConectar.setEnabled(false);
+			TextView tv = (TextView) findViewById(R.id.btnConectar);
+			btnConectar.setText("Connecting...");
+			// btnConectar.setEnabled(false);
+
 		}
 	}
+
 	/*
-	private class ConnectedThread extends Thread {
-		private final InputStream mmInStream;
-		private final OutputStream mmOutStream;
-
-		public ConnectedThread(BluetoothSocket socket) {
-			InputStream tmpIn = null;
-			OutputStream tmpOut = null;
-
-			// Get the input and output streams, using temp objects because
-			// member streams are final
-			try {
-				tmpIn = socket.getInputStream();
-				tmpOut = socket.getOutputStream();
-			} catch (IOException e) {
-			}
-
-			mmInStream = tmpIn;
-			mmOutStream = tmpOut;
-		}
-
-		public void run() {
-			byte[] buffer = new byte[1024]; // buffer store for the stream
-			int bytes; // bytes returned from read()
-
-			// Keep listening to the InputStream until an exception occurs
-			while (true) {
-				try {
-					// Read from the InputStream
-					bytes = mmInStream.read(buffer); // Get number of bytes and
-														// message in "buffer"
-					h.obtainMessage(RECIEVE_MESSAGE, bytes, -1, buffer).sendToTarget(); // Send
-																				// to
-																						// message
-																						// queue
-																						// Handler
-				} catch (IOException e) {
-					break;
-				}
-			}
-		}
-
-	}
-
-	/**
-	 * Resultado de quando a Se o resultado da interação com usuario for (OK)
-	 * mostra a mensagem de Ativação Senão mostra a de desativado e fecha a
+	 * private class ConnectedThread extends Thread { private final InputStream
+	 * mmInStream; private final OutputStream mmOutStream;
+	 * 
+	 * public ConnectedThread(BluetoothSocket socket) { InputStream tmpIn =
+	 * null; OutputStream tmpOut = null;
+	 * 
+	 * // Get the input and output streams, using temp objects because // member
+	 * streams are final try { tmpIn = socket.getInputStream(); tmpOut =
+	 * socket.getOutputStream(); } catch (IOException e) { }
+	 * 
+	 * mmInStream = tmpIn; mmOutStream = tmpOut; }
+	 * 
+	 * public void run() { byte[] buffer = new byte[1024]; // buffer store for
+	 * the stream int bytes; // bytes returned from read()
+	 * 
+	 * // Keep listening to the InputStream until an exception occurs while
+	 * (true) { try { // Read from the InputStream bytes =
+	 * mmInStream.read(buffer); // Get number of bytes and // message in
+	 * "buffer" h.obtainMessage(RECIEVE_MESSAGE, bytes, -1,
+	 * buffer).sendToTarget(); // Send // to // message // queue // Handler }
+	 * catch (IOException e) { break; } } }
+	 * 
+	 * }
+	 * 
+	 * /** Resultado de quando a Se o resultado da interação com usuario for
+	 * (OK) mostra a mensagem de Ativação Senão mostra a de desativado e fecha a
 	 * aplicação.
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -433,7 +394,55 @@ public class MainActivity extends Activity {
 				finish();
 			}
 			break;
+		case SELECT_PAIRED_DEVICE:
+			if (resultCode == RESULT_OK) {
+				btnConectar = (Button) findViewById(R.id.btnConectar);
+				if (btt == null) {
 
+					btt = new BluetoothThread(data.getStringExtra("btDevAddress"), new Handler() {
+
+						@Override
+						public void handleMessage(Message message) {
+
+							String s = (String) message.obj;
+
+							// Do something with the message
+							if (s.equals("CONNECTED")) {
+								btnConectar.setText("Desconectar");
+								btnConectar.setEnabled(true);
+
+								// ativado = true;
+							} else if (s.equals("DISCONNECTED")) {
+
+								// tv.setText("Disconnected.");
+							} else if (s.equals("CONNECTION FAILED")) {
+
+								// tv.setText("Connection failed!");
+								btt = null;
+							} else {
+								TextView tv = (TextView) findViewById(R.id.txtArduino);
+								tv.setText(s);
+							}
+						}
+					});
+				}
+
+				if (btt != null) {
+					// Get the handler that is used to send messages
+					writeHandler = btt.getWriteHandler();
+
+					// Run the thread
+					btt.start();
+
+					TextView tv = (TextView) findViewById(R.id.btnConectar);
+					btnConectar.setText("Connecting...");
+					btnConectar.setEnabled(false);
+				}
+				break;
+
+			} else {
+				Toast.makeText(getApplicationContext(), "Nenhum dispositivo Selecionado", Toast.LENGTH_LONG).show();
+			}
 		}
 	};
 
@@ -441,11 +450,11 @@ public class MainActivity extends Activity {
 	 * Permite a saida de dados a partir de um socket
 	 */
 	public void EnviarDados(String data) {
-		if (btt != null) {//btSocket
+		if (btt != null) {// btSocket
 
 			try {
 
-				outStream = btt.socket.getOutputStream();//btSocket
+				outStream = btt.socket.getOutputStream();// btSocket
 			} catch (IOException e) {
 				// TODO Colocar o tratamento da excecao (uma mensagem de erro
 				// deve
@@ -475,43 +484,34 @@ public class MainActivity extends Activity {
 	 * de um endereço MAC conhecido ou obter a partir de um conjunto de
 	 * dispositovos pareados a partir do BluetoothAdapter.getBondedDevices()
 	 *//*
-	public void conectar() {
-		if (btSocket == null) {
-			BluetoothDevice device = bluetoothPadrao.getRemoteDevice(address);
-
-			try {
-				btSocket = device.createInsecureRfcommSocketToServiceRecord(MEU_UUID);
-				// Usamos connect() para iniciar a conexão de saida.
-				btSocket.connect();
-				Toast.makeText(getApplicationContext(), "Conectado", Toast.LENGTH_LONG).show();
-			} catch (IOException e) {
-				Toast.makeText(getApplicationContext(), "Erro ao conectar", Toast.LENGTH_SHORT).show();
-			}
-		} else {
-			Toast.makeText(getApplicationContext(), "Bluetooth ja esta conectado", Toast.LENGTH_LONG).show();
-		}
-		mConnectedThread = new ConnectedThread(btSocket);
-		mConnectedThread.start();
-
-	}
-
-	/**
-	 * Desconeta o dispositivo
-	 *//*
-	public void desconectar() {
-		if (btSocket != null) {
-			try {
-				btSocket.close();
-				// e seta socket para null;
-				btSocket = null;
-				Toast.makeText(getApplicationContext(), "Desconectado", Toast.LENGTH_LONG).show();
-			} catch (IOException e) {
-			}
-		} else {
-			Toast.makeText(getApplicationContext(), "Ja esta desconectado", Toast.LENGTH_LONG).show();
-		}
-
-	}*/
+		 * public void conectar() { if (btSocket == null) { BluetoothDevice
+		 * device = bluetoothPadrao.getRemoteDevice(address);
+		 * 
+		 * try { btSocket =
+		 * device.createInsecureRfcommSocketToServiceRecord(MEU_UUID); // Usamos
+		 * connect() para iniciar a conexão de saida. btSocket.connect();
+		 * Toast.makeText(getApplicationContext(), "Conectado",
+		 * Toast.LENGTH_LONG).show(); } catch (IOException e) {
+		 * Toast.makeText(getApplicationContext(), "Erro ao conectar",
+		 * Toast.LENGTH_SHORT).show(); } } else {
+		 * Toast.makeText(getApplicationContext(), "Bluetooth ja esta conectado"
+		 * , Toast.LENGTH_LONG).show(); } mConnectedThread = new
+		 * ConnectedThread(btSocket); mConnectedThread.start();
+		 * 
+		 * }
+		 * 
+		 * /** Desconeta o dispositivo
+		 */
+	/*
+	 * public void desconectar() { if (btSocket != null) { try {
+	 * btSocket.close(); // e seta socket para null; btSocket = null;
+	 * Toast.makeText(getApplicationContext(), "Desconectado",
+	 * Toast.LENGTH_LONG).show(); } catch (IOException e) { } } else {
+	 * Toast.makeText(getApplicationContext(), "Ja esta desconectado",
+	 * Toast.LENGTH_LONG).show(); }
+	 * 
+	 * }
+	 */
 
 	/**
 	 * Apresenta a barra de menu
@@ -538,19 +538,6 @@ public class MainActivity extends Activity {
 			finish();
 			break;
 		case R.id.item1:
-			// Toast.makeText(this, "test" + (item.getItemId() + 1),
-			// Toast.LENGTH_SHORT).show();
-			boolean mostrar = true;
-
-			if (mostrar == true) {
-				txtArduino.setVisibility(View.INVISIBLE);
-				Toast.makeText(getApplicationContext(), "Invisible", Toast.LENGTH_LONG).show();
-				mostrar = false;
-			} else {
-				txtArduino.setVisibility(View.VISIBLE);
-				Toast.makeText(getApplicationContext(), "Visible", Toast.LENGTH_LONG).show();
-				mostrar = true;
-			}
 
 			break;
 		case R.id.item2:
@@ -586,14 +573,28 @@ public class MainActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	protected void onPause() {
-        super.onPause();
 
-        if(btt != null) {
-            btt.interrupt();
-            btt = null;
-        }
-    }
+	protected void onPause() {
+		super.onPause();
+
+		if (btt != null) {
+			btt.interrupt();
+			btt = null;
+		}
+	}
+	
+	public void ValoresPadrãoBotoes(){
+		 frente = "a";
+		 direita = "b";
+		 esquerda = "c";
+		 tras = "d";
+		 x = "e";
+		 y = "f";
+		 z = "g";
+		 a = "h";
+		 b = "i";
+		 c = "j";
+		
+	}
 
 }
