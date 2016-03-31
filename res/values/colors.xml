@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="AliceBlue">#fff0f8ff</color>
     <color name="AntiqueWhite">#fffaebd7</color>
     <color name="Aqua">#ff00ffff</color>
@@ -147,4 +148,5 @@
     <color name="WhiteSmoke">#fff5f5f5</color>
     <color name="Yellow">#ffffff00</color>
     <color name="YellowGreen">#ff9acd32</color>
+
 </resources>

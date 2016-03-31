@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">AppBluetoothArduino</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_paired_devices">PairedDevices</string>
+    <string name="app_name">appBrinquedoOpenIot</string>
     <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Salvar e Voltar</string>
+    <string name="title_activity_values_bottons">Values_bottons</string>
+    <string name="title_activity_paired_devices">PairedDevices</string>
 
 </resources>

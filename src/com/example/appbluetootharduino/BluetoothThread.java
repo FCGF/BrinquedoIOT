@@ -183,6 +183,7 @@ public class BluetoothThread extends Thread {
 
         } catch (Exception e) {
             Log.e(TAG, "Write failed!", e);
+            
         }
     }
 
@@ -201,6 +202,7 @@ public class BluetoothThread extends Thread {
      * Send complete messages from the rx_buffer to the read handler.
      */
     private void parseMessages() {
+    	
 
         // Find the first delimiter in the buffer
         int inx = rx_buffer.indexOf(DELIMITER);
