@@ -11,11 +11,8 @@ import android.view.MenuItem;
 import android.app.ListActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.Set;
 
 public class PairedDevices extends ListActivity {
@@ -26,8 +23,8 @@ public class PairedDevices extends ListActivity {
 
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
 		/*
-		 * Esse trecho n√£o √© essencial, mas d√° um melhor visual √† lista.
-		 * Adiciona um t√≠tulo √† lista de dispositivos pareados utilizando o
+		 * Esse trecho n„o È essencial, mas da um melhor visual a† lista.
+		 * Adiciona um titulo a lista de dispositivos pareados utilizando o
 		 * layout text_header.xml.
 		 */
 		ListView lv = getListView();
@@ -44,8 +41,8 @@ public class PairedDevices extends ListActivity {
 		Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
 
 		/*
-		 * Cria um modelo para a lista e o adiciona √† tela. Se houver
-		 * dispositivos pareados, adiciona cada um √† lista.
+		 * Cria um modelo para a lista e o adiciona a† tela. Se houver
+		 * dispositivos pareados, adiciona cada um a lista.
 		 */
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 		setListAdapter(adapter);
@@ -57,26 +54,24 @@ public class PairedDevices extends ListActivity {
 	}
 
 	/*
-	 * Este m√©todo √© executado quando o usu√°rio seleciona um elemento da
-	 * lista.
+	 * Este metodo È executado quando o usuario seleciona um elemento da lista.
 	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 
 		/*
-		 * Extrai nome e endere√ßo a partir do conte√∫do do elemento
-		 * selecionado. Nota: position-1 √© utilizado pois adicionamos um
-		 * t√≠tulo √† lista e o valor de position recebido pelo m√©todo √©
-		 * deslocado em uma unidade.
+		 * Extrai nome e endereÁo a partir do conteudo do elemento selecionado.
+		 * Nota: position-1 È utilizado pois adicionamos um tÌtulo ‡ lista e o valor
+		 * de position recebido pelo mÈtodo È deslocado em uma unidade.
 		 */
 		String item = (String) getListAdapter().getItem(position - 1);
 		String devName = item.substring(0, item.indexOf("\n"));
 		String devAddress = item.substring(item.indexOf("\n") + 1, item.length());
 
 		/*
-		 * Utiliza um Intent para encapsular as informa√ß√µes de nome e
-		 * endere√ßo. Informa √† Activity principal que tudo foi um sucesso!
-		 * Finaliza e retorna √† Activity principal.
+		 * Utiliza um Intent para encapsular as informaÁıes de nome e endereÁo.
+		 * Informa a Activity principal que tudo foi um sucesso! Finaliza e
+		 * retorna a Activity principal.
 		 */
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra("btDevName", devName);
@@ -91,14 +86,13 @@ public class PairedDevices extends ListActivity {
 		getMenuInflater().inflate(R.menu.paired_devices, menu);
 		return true;
 	}
+
 	public boolean onMenuItemSelected(int panel, MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			
-			
+
 			break;
-		
-			
+
 		}
 
 		return true;

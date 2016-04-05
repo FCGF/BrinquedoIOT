@@ -1,39 +1,30 @@
 package com.example.appbrinquedoopeniot;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.UUID;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 /**
- * Conexão Bluetooth dentro da aplicação Android
+ * Activity principal que cuida referencia botoes da tela principal, e manipula os dados que são salvos.
  * 
  * @author Administrador
  */
+@SuppressLint({  "HandlerLeak", "ClickableViewAccessibility" })
 public class MainActivity extends Activity {
 
 	String frente, direita, esquerda, tras, x, y, z, a, b, c;
@@ -53,6 +44,7 @@ public class MainActivity extends Activity {
 	// Requisição para Activity de ativação do Bluetooth
 	// Se numero for maior > 0,este codigo sera devolvido em onActivityResult()
 	private static final int REQUEST_ENABLE_BT = 1;
+	
 	public static final int SELECT_PAIRED_DEVICE = 2;
 	public static final int VALORES = 4;
 
@@ -60,18 +52,15 @@ public class MainActivity extends Activity {
 	// Bluetooth
 	private BluetoothAdapter bluetoothPadrao = null;
 
-	// BluetoothSocket é um ponto de conexão que permite trocar dados com outro
-	// disposivo
-	// bleutooth atravs do ImputStream() e OutputStream()
-	private BluetoothSocket btSocket = null;
+	
 
 	// Para manipular as transmissoes de dados atraves do socket,
 	// è necessario ter ImputStream e um OutputStream,
 	// via getImputStream() e getOutputStream()
-	private OutputStream outStream = null;// Para saida de informação.
+	//private OutputStream outStream = null;// Para saida de informação.
 
 	// Para armazenar o endereço MAC do modulo Bluetooth
-	private static String address = "20:13:06:19:08:29";
+	//private static String address = "20:13:06:19:08:29";
 
 	/**
 	 * Criação da tela
@@ -400,7 +389,6 @@ public class MainActivity extends Activity {
 					// Run the thread
 					btt.start();
 
-					TextView tv = (TextView) findViewById(R.id.btnConectar);
 					btnConectar.setText("Connecting...");
 					btnConectar.setEnabled(false);
 				}
@@ -447,12 +435,12 @@ public class MainActivity extends Activity {
 			Toast.makeText(this, "Sair", Toast.LENGTH_SHORT).show();
 			finish();
 			break;
-		case R.id.item1:
+		/*case R.id.item1:
 
 			break;
 		case R.id.item2:
 			Toast.makeText(this, "So mostro meu ID XD: " + (item.getItemId() + 1), Toast.LENGTH_SHORT).show();
-			break;
+			break;*/
 		case R.id.item3:
 			Value_Bottons.putExtra("frente", frente);
 			Value_Bottons.putExtra("direita", direita);
@@ -467,9 +455,8 @@ public class MainActivity extends Activity {
 			startActivityForResult(Value_Bottons, VALORES);
 
 			break;
-		case R.id.item4:
-
-			break;
+		//case R.id.item4:
+			//break;
 		case R.id.item6:
 			dados.setVisibility(View.VISIBLE);
 			txtArduino01.setVisibility(View.VISIBLE);

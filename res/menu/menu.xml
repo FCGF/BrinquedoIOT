@@ -1,5 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
+<!-- 
     <item
         android:id="@+id/item1"
         android:showAsAction="always"
@@ -8,14 +8,16 @@
         android:id="@+id/item2"
         android:showAsAction="ifRoom|withText"
         android:title="Não faço nada"/>
-    <item
-        android:id="@+id/item3"
-        android:showAsAction="never"
-        android:title="Valores dos Botoess"/>
-    <item
+     <item
         android:id="@+id/item4"
         android:showAsAction="never"
         android:title="3"/>
+         -->
+    <item
+        android:id="@+id/item3"
+        android:showAsAction="never"
+        android:title="Valores dos Botoes"/>
+   
     <item
         android:id="@+id/item5"
         android:showAsAction="never"
@@ -29,5 +31,10 @@
                 android:title="Ocultar"/>
         </menu>
     </item>
+    
+    <item
+        android:id="@+id/item8"
+        android:showAsAction="never"
+        android:title="Sobre o App"/>
 
 </menu>
