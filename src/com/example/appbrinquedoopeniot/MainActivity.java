@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 
 	String frente, direita, esquerda, tras, x, y, z, a, b, c;
 	Button btnConectar, btnFrente, btnDireita, btnEsquerda, btnTras, btn1, btn2, btn3, btn4, btn5, btn6;
-	TextView txtArduino01, txtArduino02, txtArduino03, txtArduino04, txtArduino05;
+	TextView txtArduino01, txtArduino02, txtArduino03, txtArduino04, txtArduino05,txtArduino06,txtArduino07;
 	View dados;
 
 	public static final String PREFS_NAME = "Preferences";
@@ -262,6 +262,8 @@ public class MainActivity extends Activity {
 		txtArduino03 = (TextView) findViewById(R.id.txtArduino03);
 		txtArduino04 = (TextView) findViewById(R.id.txtArduino04);
 		txtArduino05 = (TextView) findViewById(R.id.txtArduino05);
+		txtArduino06 = (TextView) findViewById(R.id.txtArduino06);
+		txtArduino07 = (TextView) findViewById(R.id.txtArduino07);
 		btnConectar = (Button) findViewById(R.id.btnConectar);
 		btnFrente = (Button) findViewById(R.id.bt_frente);
 		btnDireita = (Button) findViewById(R.id.bt_direita);
@@ -364,6 +366,12 @@ public class MainActivity extends Activity {
 										break;
 									case 4:
 										txtArduino05.setText(textoB[4]);
+										break;
+									case 5:
+										txtArduino05.setText(textoB[5]);
+										break;
+									case 6:
+										txtArduino05.setText(textoB[6]);
 										break;
 									default:
 										if(imprimir){
