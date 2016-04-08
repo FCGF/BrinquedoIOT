@@ -99,40 +99,7 @@ public class MainActivity extends FragmentActivity  {
 			startActivityForResult(novoIntent, REQUEST_ENABLE_BT);
 		}
 
-		btnFrente.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View view, final MotionEvent motionEvent) {
-
-				if (btt != null) {
-					Message msg = Message.obtain();
-					msg.obj = frente;
-					writeHandler.sendMessage(msg);
-				} else {
-					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
-				}
-
-				return false;
-			}
-		});
-
-		btnDireita.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View view, final MotionEvent motionEvent) {
-
-				if (btt != null) {
-					Message msg = Message.obtain();
-					msg.obj = direita;
-					writeHandler.sendMessage(msg);
-				} else {
-					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
-				}
-
-				return false;
-			}
-		});
-
+	
 		btnFrente.setOnTouchListener(new BotaoListener(frente));
 		btnEsquerda.setOnTouchListener(new BotaoListener(esquerda));
 		btnDireita.setOnTouchListener(new BotaoListener(direita));
