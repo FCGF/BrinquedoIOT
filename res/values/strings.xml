@@ -8,5 +8,6 @@
     <string name="title_activity_values_bottons">Values_bottons</string>
     <string name="title_activity_paired_devices">PairedDevices</string>
     <string name="joystick_bt_connect">Conectar</string>
+    <string name="title_activity_info_fragment">InfoFragment</string>
 
 </resources>

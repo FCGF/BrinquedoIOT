@@ -5,6 +5,8 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -15,9 +17,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.DialogFragment;
 
 /**
  * Activity principal que cuida referencia botoes da tela principal, e manipula os dados que são salvos.
@@ -25,13 +29,17 @@ import android.widget.Toast;
  * @author Administrador
  */
 @SuppressLint({  "HandlerLeak", "ClickableViewAccessibility" })
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity  {
 
 	String frente, direita, esquerda, tras, x, y, z, a, b, c;
 	Button btnConectar, btnFrente, btnDireita, btnEsquerda, btnTras, btn1, btn2, btn3, btn4, btn5, btn6;
 	TextView txtArduino01, txtArduino02, txtArduino03, txtArduino04, txtArduino05,txtArduino06,txtArduino07;
 	View dados;
-
+	
+	
+	FragmentManager fm = getSupportFragmentManager();
+	
+	
 	public static final String PREFS_NAME = "Preferences";
 
 	Intent Value_Bottons;
@@ -125,134 +133,35 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		btnEsquerda.setOnTouchListener(new View.OnTouchListener() {
+		btnFrente.setOnTouchListener(new BotaoListener(frente));
+		btnEsquerda.setOnTouchListener(new BotaoListener(esquerda));
+		btnDireita.setOnTouchListener(new BotaoListener(direita));
+		btnTras.setOnTouchListener(new BotaoListener(tras));
+		btn1.setOnTouchListener(new BotaoListener(x));
+		btn2.setOnTouchListener(new BotaoListener(y));
+		btn3.setOnTouchListener(new BotaoListener(z));
+		btn4.setOnTouchListener(new BotaoListener(a));
+		btn5.setOnTouchListener(new BotaoListener(b));
+		btn6.setOnTouchListener(new BotaoListener(c));
 
-			@Override
-			public boolean onTouch(View view, final MotionEvent motionEvent) {
+//		btn1.setOnTouchListener(new View.OnTouchListener() {
+//
+//			@Override
+//			public boolean onTouch(View view, final MotionEvent motionEvent) {
+//
+//				if (btt != null) {
+//					Message msg = Message.obtain();
+//					msg.obj = x;
+//					writeHandler.sendMessage(msg);
+//				} else {
+//					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
+//				}
+//
+//				return false;
+//			}
+//		});
 
-				if (btt != null) {
-					Message msg = Message.obtain();
-					msg.obj = esquerda;
-					writeHandler.sendMessage(msg);
-				} else {
-					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
-				}
-				return false;
-			}
-		});
-		btnTras.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View view, final MotionEvent motionEvent) {
-
-				if (btt != null) {
-					Message msg = Message.obtain();
-					msg.obj = tras;
-					writeHandler.sendMessage(msg);
-				} else {
-					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
-				}
-
-				return false;
-			}
-		});
-
-		btn1.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View view, final MotionEvent motionEvent) {
-
-				if (btt != null) {
-					Message msg = Message.obtain();
-					msg.obj = x;
-					writeHandler.sendMessage(msg);
-				} else {
-					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
-				}
-
-				return false;
-			}
-		});
-
-		btn2.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View view, final MotionEvent motionEvent) {
-
-				if (btt != null) {
-					Message msg = Message.obtain();
-					msg.obj = y;
-					writeHandler.sendMessage(msg);
-				} else {
-					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
-				}
-				return false;
-			}
-		});
-		btn3.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View view, final MotionEvent motionEvent) {
-
-				if (btt != null) {
-					Message msg = Message.obtain();
-					msg.obj = z;
-					writeHandler.sendMessage(msg);
-				} else {
-					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
-				}
-
-				return false;
-			}
-		});
-		btn4.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View view, final MotionEvent motionEvent) {
-
-				if (btt != null) {
-					Message msg = Message.obtain();
-					msg.obj = a;
-					writeHandler.sendMessage(msg);
-				} else {
-					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
-				}
-
-				return false;
-			}
-		});
-		btn5.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View view, final MotionEvent motionEvent) {
-
-				if (btt != null) {
-					Message msg = Message.obtain();
-					msg.obj = b;
-					writeHandler.sendMessage(msg);
-				} else {
-					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
-				}
-
-				return false;
-			}
-		});
-		btn6.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View view, final MotionEvent motionEvent) {
-
-				if (btt != null) {
-					Message msg = Message.obtain();
-					msg.obj = c;
-					writeHandler.sendMessage(msg);
-				} else {
-					Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
-				}
-
-				return false;
-			}
-		});
-
+		
 	}
 
 	public void referenciarElementosTela() {
@@ -483,8 +392,16 @@ public class MainActivity extends Activity {
 			txtArduino05.setVisibility(View.INVISIBLE);
 			Toast.makeText(getApplicationContext(), "Dados invisiveis", Toast.LENGTH_LONG).show();
 			break;
-
+			
+		case R.id.item8:
+			InfoFragment dFragment = new InfoFragment();
+			// Show DialogFragment
+			dFragment.show(fm, "Dialog Fragment");
+			break;
 		}
+			
+
+		
 
 		return true;
 	};
@@ -524,4 +441,27 @@ public class MainActivity extends Activity {
 		editor.commit();
 	}
 
+	public class BotaoListener implements OnTouchListener {
+
+		private String mensagem;
+		
+		public BotaoListener(String mensagem) {
+			super();
+			this.mensagem = mensagem;
+		}
+		
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			if (btt != null) {
+				Message msg = Message.obtain();
+				msg.obj = mensagem;
+				writeHandler.sendMessage(msg);
+			} else {
+				Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
+			}
+			return false;
+		}
+		
+	}
+	
 }
