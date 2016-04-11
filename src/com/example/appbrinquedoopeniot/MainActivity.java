@@ -7,9 +7,11 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -167,7 +169,9 @@ public class MainActivity extends FragmentActivity  {
 		c = settings.getString("c", "");
 	}
 
+	
 	public void connectButtonPressed(View v) {
+		
 		if (btt == null) {
 			Intent searchPairedDevicesIntent = new Intent(this, PairedDevices.class);
 			startActivityForResult(searchPairedDevicesIntent, SELECT_PAIRED_DEVICE);

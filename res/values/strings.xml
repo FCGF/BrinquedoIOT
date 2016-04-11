@@ -3,7 +3,7 @@
 
     <string name="app_name">appBrinquedoOpenIot</string>
     <string name="hello_world">Hello world!</string>
-    <string name="sobre_app">Sobre o app</string>
+    <string name="sobre_app">Centro universitario de Santa Catarina\n\ Catolica</string>
     <string name="action_settings">Salvar e Voltar</string>
     <string name="title_activity_values_bottons">Values_bottons</string>
     <string name="title_activity_paired_devices">PairedDevices</string>

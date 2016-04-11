@@ -22,13 +22,12 @@
         android:orientation="horizontal" >
 
         <TextView
-            
             android:layout_width="fill_parent"
             android:layout_height="75.0dip"
             android:layout_marginBottom="10.0dip"
             android:layout_weight="1.0"
             android:gravity="center_vertical"
-            android:text="app Catolica"
+            android:text="app catolica\nVersion: 1.0\n\nigor.fachini8@gmail.com"
             android:textColor="@color/MaterialDarkGray"
             android:textSize="14.0sp" />
 
@@ -66,7 +65,6 @@
             android:layout_height="40.0dip"
             android:layout_margin="5.0dip"
             android:background="@drawable/gplay_ico" />
-
     </LinearLayout>
 
 </LinearLayout>
