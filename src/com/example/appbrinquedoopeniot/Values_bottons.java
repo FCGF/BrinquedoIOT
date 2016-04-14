@@ -60,6 +60,20 @@ public class Values_bottons extends Activity {
 		
 		return valores;
 	}
+	
+public void valoresPadrao(){
+	EditFrente.setText("a");
+	EditDireita.setText("b");
+	EditEsquerda.setText("c");
+	EditTras.setText("d");
+	EditX.setText("e");
+	EditY.setText("f");
+	EditZ.setText("g");
+	EditA.setText("h");
+	EditB.setText("i");
+	EditC.setText("j");
+		
+	}
 
 	
 
@@ -76,13 +90,20 @@ public class Values_bottons extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		switch (id) {
+		case R.id.action_settings:
 			setResult(RESULT_OK, pegarValores());
 			
 			finish();
-			
-			return true;
+			break;
+		case R.id.valores_padrao:
+			valoresPadrao();
+			break;
+
+		default:
+			break;
 		}
+		
 		return super.onOptionsItemSelected(item);
 	}
 	

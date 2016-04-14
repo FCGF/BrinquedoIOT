@@ -7,11 +7,9 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,7 +21,6 @@ import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.DialogFragment;
 
 /**
  * Activity principal que cuida referencia botoes da tela principal, e manipula os dados que são salvos.
@@ -31,7 +28,7 @@ import android.app.DialogFragment;
  * @author Administrador
  */
 @SuppressLint({  "HandlerLeak", "ClickableViewAccessibility" })
-public class MainActivity extends FragmentActivity  {
+public class MainActivity extends  FragmentActivity {
 
 	String frente, direita, esquerda, tras, x, y, z, a, b, c;
 	Button btnConectar, btnFrente, btnDireita, btnEsquerda, btnTras, btn1, btn2, btn3, btn4, btn5, btn6;
@@ -54,22 +51,15 @@ public class MainActivity extends FragmentActivity  {
 	// Requisição para Activity de ativação do Bluetooth
 	// Se numero for maior > 0,este codigo sera devolvido em onActivityResult()
 	private static final int REQUEST_ENABLE_BT = 1;
-	
+	//Requisição para Activity para inciar tela do aplicativos pareados,
+	//que se houver ou nao aplicativo pareado retornara para onActivityResult()
+	//e realizara as devidas ações conforme a resposta
 	public static final int SELECT_PAIRED_DEVICE = 2;
 	public static final int VALORES = 4;
 
 	// BluetoothAdapter é comando de entrada padrão paras todads interações com
-	// Bluetooth
 	private BluetoothAdapter bluetoothPadrao = null;
 
-	
-
-	// Para manipular as transmissoes de dados atraves do socket,
-	// è necessario ter ImputStream e um OutputStream,
-	// via getImputStream() e getOutputStream()
-	//private OutputStream outStream = null;// Para saida de informação.
-
-	// Para armazenar o endereço MAC do modulo Bluetooth
 	//private static String address = "20:13:06:19:08:29";
 
 	/**
@@ -93,25 +83,17 @@ public class MainActivity extends FragmentActivity  {
 		// Vereficamos se o aparelho possui adaptador Bluetooth
 		if (bluetoothPadrao == null) {
 			Toast.makeText(getApplicationContext(), "Dispostivo nao possui Bluetooth", Toast.LENGTH_LONG).show();
-			// finish();
+		   // finish();
 			return;
 		}
+		
 		if (!bluetoothPadrao.isEnabled()) {
 			Intent novoIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 			startActivityForResult(novoIntent, REQUEST_ENABLE_BT);
 		}
 
 	
-		btnFrente.setOnTouchListener(new BotaoListener(frente));
-		btnEsquerda.setOnTouchListener(new BotaoListener(esquerda));
-		btnDireita.setOnTouchListener(new BotaoListener(direita));
-		btnTras.setOnTouchListener(new BotaoListener(tras));
-		btn1.setOnTouchListener(new BotaoListener(x));
-		btn2.setOnTouchListener(new BotaoListener(y));
-		btn3.setOnTouchListener(new BotaoListener(z));
-		btn4.setOnTouchListener(new BotaoListener(a));
-		btn5.setOnTouchListener(new BotaoListener(b));
-		btn6.setOnTouchListener(new BotaoListener(c));
+		
 
 //		btn1.setOnTouchListener(new View.OnTouchListener() {
 //
@@ -183,6 +165,41 @@ public class MainActivity extends FragmentActivity  {
 			
 		}
 
+	}
+	
+	public void acaoDosBotoes(){
+		btnFrente.setOnTouchListener(new BotaoListener(frente));
+		btnEsquerda.setOnTouchListener(new BotaoListener(esquerda));
+		btnDireita.setOnTouchListener(new BotaoListener(direita));
+		btnTras.setOnTouchListener(new BotaoListener(tras));
+		btn1.setOnTouchListener(new BotaoListener(x));
+		btn2.setOnTouchListener(new BotaoListener(y));
+		btn3.setOnTouchListener(new BotaoListener(z));
+		btn4.setOnTouchListener(new BotaoListener(a));
+		btn5.setOnTouchListener(new BotaoListener(b));
+		btn6.setOnTouchListener(new BotaoListener(c));
+	}
+	public class BotaoListener implements OnTouchListener {
+
+		private String mensagem;
+		
+		public BotaoListener(String mensagem) {
+			super();
+			this.mensagem = mensagem;
+		}
+		
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			if (btt != null) {
+				Message msg = Message.obtain();
+				msg.obj = mensagem;
+				writeHandler.sendMessage(msg);
+			} else {
+				Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
+			}
+			return false;
+		}
+		
 	}
 
 	boolean imprimir = true;
@@ -412,27 +429,12 @@ public class MainActivity extends FragmentActivity  {
 		editor.commit();
 	}
 
-	public class BotaoListener implements OnTouchListener {
-
-		private String mensagem;
-		
-		public BotaoListener(String mensagem) {
-			super();
-			this.mensagem = mensagem;
-		}
-		
-		@Override
-		public boolean onTouch(View v, MotionEvent event) {
-			if (btt != null) {
-				Message msg = Message.obtain();
-				msg.obj = mensagem;
-				writeHandler.sendMessage(msg);
-			} else {
-				Toast.makeText(getApplicationContext(), "Bluetooth nao conectado", Toast.LENGTH_LONG).show();
-			}
-			return false;
-		}
-		
+	
+	
+	@Override
+	public void onResume(){
+	    super.onResume();
+	    acaoDosBotoes();
 	}
 	
 }
