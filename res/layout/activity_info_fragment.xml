@@ -27,7 +27,7 @@
             android:layout_marginBottom="10.0dip"
             android:layout_weight="1.0"
             android:gravity="center_vertical"
-            android:text="app catolica\nVersion: 1.0\n\nigor.fachini8@gmail.com"
+            android:text="app catolica\nVersion: 1.0"
             android:textColor="@color/MaterialDarkGray"
             android:textSize="14.0sp" />
 
