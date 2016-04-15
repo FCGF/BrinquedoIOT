@@ -29,7 +29,7 @@
         android:layout_alignBottom="@+id/botoes2"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/ImageView01"
-        android:gravity="center"
+        android:gravity="bottom|center"
         android:orientation="vertical" >
 
         <Button
@@ -73,6 +73,7 @@
         android:id="@+id/FundoDados"
         android:layout_width="100.0dip"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -82,6 +83,26 @@
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="invisible" >
+
+        <TextView
+            android:id="@+id/TextView02"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="6.0dip"
+            android:gravity="center"
+            android:textColor="@color/White"
+            android:textSize="12.0sp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="6.0dip"
+            android:gravity="center"
+            android:textColor="@color/White"
+            android:textSize="12.0sp"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/txtArduino01"
@@ -161,7 +182,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/ImageView02"
-        android:gravity="center"
+        android:gravity="bottom|center"
         android:orientation="vertical" >
 
         <LinearLayout
