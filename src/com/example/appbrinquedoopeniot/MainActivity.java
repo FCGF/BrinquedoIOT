@@ -69,13 +69,12 @@ public class MainActivity extends  FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
 		setContentView(R.layout.activity_main);
 		ActionBar ab = getActionBar();
 		ab.setDisplayHomeAsUpEnabled(true);
 		Value_Bottons = new Intent(this, Values_bottons.class);
-		resgatarValoresBotoes();
-		referenciarElementosTela();
+		
 
 		// Obtem o bluetooth padrao do aparelho celular
 		bluetoothPadrao = BluetoothAdapter.getDefaultAdapter();
@@ -83,7 +82,7 @@ public class MainActivity extends  FragmentActivity {
 		// Vereficamos se o aparelho possui adaptador Bluetooth
 		if (bluetoothPadrao == null) {
 			Toast.makeText(getApplicationContext(), "Dispostivo nao possui Bluetooth", Toast.LENGTH_LONG).show();
-		   // finish();
+		    finish();
 			return;
 		}
 		
@@ -91,6 +90,9 @@ public class MainActivity extends  FragmentActivity {
 			Intent novoIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 			startActivityForResult(novoIntent, REQUEST_ENABLE_BT);
 		}
+		
+		resgatarValoresBotoes();
+		referenciarElementosTela();
 
 	
 		
@@ -240,12 +242,23 @@ public class MainActivity extends  FragmentActivity {
 								// ativado = true;
 							} else if (s.equals("DISCONNECTED")) {
 
-								// tv.setText("Disconnected.");
-							} else if (s.equals("CONNECTION FAILED")) {
-
-								// tv.setText("Connection failed!");
+								Toast.makeText(getApplicationContext(),
+										"Desconectado", Toast.LENGTH_LONG)
+										.show();
+								btnConectar.setText("Conectar");
+								
 								btt = null;
+								btnConectar.setEnabled(true);
+							} else if (s.equals("CONNECTION FAILED")) {
+								Toast.makeText(getApplicationContext(),
+										"Falha na conexao", Toast.LENGTH_LONG)
+										.show();
+								btnConectar.setText("Conectar");
+								
+								btt = null;
+								btnConectar.setEnabled(true);
 							} else {
+								
 								loop:
 								for (int i = 0; i < textoB.length; i++) {
 									switch (i) {
@@ -305,6 +318,7 @@ public class MainActivity extends  FragmentActivity {
 			break;
 		case VALORES:
 			if (resultCode == RESULT_OK) {
+				Toast.makeText(getApplicationContext(), "Mudanças salvas", Toast.LENGTH_LONG).show();
 				frente = data.getStringExtra("frente");
 				direita = data.getStringExtra("direita");
 				esquerda = data.getStringExtra("esquerda");
@@ -338,7 +352,11 @@ public class MainActivity extends  FragmentActivity {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			Toast.makeText(this, "Sair", Toast.LENGTH_SHORT).show();
+		
+			
+			
 			finish();
+			
 			break;
 		/*case R.id.item1:
 
@@ -435,6 +453,11 @@ public class MainActivity extends  FragmentActivity {
 	public void onResume(){
 	    super.onResume();
 	    acaoDosBotoes();
+	}
+	
+	@Override
+	public void onDestroy(){
+		super.onDestroy();
 	}
 	
 }

@@ -14,9 +14,9 @@ public class InfoFragment extends DialogFragment {
 	Button googleBtn, googlePlayBtn, facebookBtn;
 	
 
-	private static final String linkCatolica = "https://www.google.com.br/?gws_rd=ssl";
-	private static final String linkFacebook = "https://www.google.com.br/?gws_rd=ssl";
-	private static final String linkGmail= "https://www.google.com.br/?gws_rd=ssl";
+	private static final String linkCatolica = "http://www.catolicasc.org.br/";
+	private static final String linkFacebook = "https://www.facebook.com/WickedBotz/?fref=ts";
+	private static final String linkGmail= "https://plus.google.com/u/0/116474376621584890949/posts";
 	private static final String linkGooglePlay = "https://www.google.com.br/?gws_rd=ssl";
 	
 	@Override

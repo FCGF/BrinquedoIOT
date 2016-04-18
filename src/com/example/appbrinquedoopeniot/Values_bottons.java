@@ -1,5 +1,6 @@
 package com.example.appbrinquedoopeniot;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ public class Values_bottons extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_values_bottons);
+		ActionBar ab = getActionBar();
+		ab.setDisplayHomeAsUpEnabled(true);
 		Bundle extras = getIntent().getExtras();
 		
 		
@@ -89,11 +92,39 @@ public void valoresPadrao(){
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		switch (id) {
+		
+		//Ja que usamos o setDisplayHomeAsUpEnabled para true, para poder usar o icone do home, o onOptionsItemSelected
+		//pasa a ser onMenuItemSelected
+//		int id = item.getItemId();
+//		switch (id) {
+//		case R.id.action_settings:
+//			setResult(RESULT_OK, pegarValores());
+//			
+//			finish();
+//			break;
+//			
+//		case android.R.id.home:
+//			finish();
+//			break;
+//		case R.id.valores_padrao:
+//			valoresPadrao();
+//			break;
+//
+//		default:
+//			break;
+//		}
+//		
+		return super.onOptionsItemSelected(item);
+	}
+	public boolean onMenuItemSelected(int panel, MenuItem item) {
+		switch (item.getItemId()) {
 		case R.id.action_settings:
 			setResult(RESULT_OK, pegarValores());
 			
+			finish();
+			break;
+			
+		case android.R.id.home:
 			finish();
 			break;
 		case R.id.valores_padrao:
@@ -103,21 +134,18 @@ public void valoresPadrao(){
 		default:
 			break;
 		}
-		
-		return super.onOptionsItemSelected(item);
-	}
+
+		return true;
+	};
+
 	
 
 	@Override
 	protected void onStop() {
 		super.onStop();
 		
-
-
-		
-
-		
-
 	}
+	
+	
 
 }

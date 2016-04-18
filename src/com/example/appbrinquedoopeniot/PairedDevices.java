@@ -8,11 +8,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.app.ActionBar;
 import android.app.ListActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Set;
 
 public class PairedDevices extends ListActivity {
@@ -84,13 +87,15 @@ public class PairedDevices extends ListActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.paired_devices, menu);
+		ActionBar ab = getActionBar();
+		ab.setDisplayHomeAsUpEnabled(true);
 		return true;
 	}
 
 	public boolean onMenuItemSelected(int panel, MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-
+			finish();
 			break;
 
 		}
@@ -106,7 +111,9 @@ public class PairedDevices extends ListActivity {
 		int id = item.getItemId();
 
 		// noinspection SimplifiableIfStatement
-		if (id == R.id.action_settings) {
+		if (id == R.id.home) {
+			
+			finish();
 			return true;
 		}
 

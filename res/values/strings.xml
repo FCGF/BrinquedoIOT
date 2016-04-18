@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">appBrinquedoOpenIot</string>
+    <string name="app_name">Controle BT arduino</string>
     <string name="hello_world">Hello world!</string>
-    <string name="sobre_app">Catolica</string>
+    <string name="sobre_app">Grupo de robotica da catolica de SC</string>
     <string name="action_settings">Salvar e Voltar</string>
-    <string name="title_activity_values_bottons">Values_bottons</string>
-    <string name="title_activity_paired_devices">PairedDevices</string>
+    <string name="title_activity_values_bottons">Valores dos botoes</string>
+    <string name="title_activity_paired_devices">Dispositivos pareados</string>
     <string name="joystick_bt_connect">Conectar</string>
     <string name="title_activity_info_fragment">InfoFragment</string>
 
