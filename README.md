@@ -1,5 +1,5 @@
 # BrinquedoIOT
-Aplicação com joystick para controlar robos trekking(ou carrinhos).
+Aplicação com joystick para controlar robos trekking(ou carrinhos)..
 
 Possibilidade de conectar com qualquer modulo bluetooth serial que ja esteja pareado com o aparelho.
 
