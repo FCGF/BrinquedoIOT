@@ -323,7 +323,7 @@ public class MainActivity extends  FragmentActivity {
 					// Run the thread
 					btt.start();
 
-					btnConectar.setText("Connecting...");
+					btnConectar.setText("Conectando...");
 					btnConectar.setEnabled(false);
 				}
 				// break;
@@ -353,18 +353,23 @@ public class MainActivity extends  FragmentActivity {
 		}
 	};
 
+	private MenuItem btiMostrarDados;
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.menu, menu);
+		btiMostrarDados = menu.findItem(R.id.item6);
+		btiMostrarDados.setTitle("Mostrar");
 		return true;
 	}
 
+	private boolean mostrarDados = true;
 	@Override
 	public boolean onMenuItemSelected(int panel, MenuItem item) {
 
+		
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			Toast.makeText(this, "Sair", Toast.LENGTH_SHORT).show();
@@ -397,22 +402,32 @@ public class MainActivity extends  FragmentActivity {
 		//case R.id.item4:
 			//break;
 		case R.id.item6:
-			dados.setVisibility(View.VISIBLE);
-			txtArduino01.setVisibility(View.VISIBLE);
-			txtArduino02.setVisibility(View.VISIBLE);
-			txtArduino03.setVisibility(View.VISIBLE);
-			txtArduino04.setVisibility(View.VISIBLE);
-			txtArduino05.setVisibility(View.VISIBLE);
-			Toast.makeText(getApplicationContext(), "Dados visiveis", Toast.LENGTH_LONG).show();
-			break;
-		case R.id.item7:
-			dados.setVisibility(View.INVISIBLE);
-			txtArduino01.setVisibility(View.INVISIBLE);
-			txtArduino02.setVisibility(View.INVISIBLE);
-			txtArduino03.setVisibility(View.INVISIBLE);
-			txtArduino04.setVisibility(View.INVISIBLE);
-			txtArduino05.setVisibility(View.INVISIBLE);
-			Toast.makeText(getApplicationContext(), "Dados invisiveis", Toast.LENGTH_LONG).show();
+			if(mostrarDados){
+				dados.setVisibility(View.VISIBLE);
+				txtArduino01.setVisibility(View.VISIBLE);
+				txtArduino02.setVisibility(View.VISIBLE);
+				txtArduino03.setVisibility(View.VISIBLE);
+				txtArduino04.setVisibility(View.VISIBLE);
+				txtArduino05.setVisibility(View.VISIBLE);
+				Toast.makeText(getApplicationContext(), "Dados visiveis", Toast.LENGTH_LONG).show();
+				btiMostrarDados.setTitle("Ocultar");
+				mostrarDados = false;
+			}else{
+			
+				dados.setVisibility(View.INVISIBLE);
+				txtArduino01.setVisibility(View.INVISIBLE);
+				txtArduino02.setVisibility(View.INVISIBLE);
+				txtArduino03.setVisibility(View.INVISIBLE);
+				txtArduino04.setVisibility(View.INVISIBLE);
+				txtArduino05.setVisibility(View.INVISIBLE);
+				Toast.makeText(getApplicationContext(), "Dados invisiveis", Toast.LENGTH_LONG).show();
+				btiMostrarDados.setTitle("Mostrar");
+				mostrarDados = true;
+			}
+			
+			
+			
+			
 			break;
 			
 		case R.id.item8:

@@ -16,25 +16,25 @@
         android:title="3"/>-->   
     <item
         android:id="@+id/item3"
-        android:title="Valores dos Botoes"
+        android:title="@string/Valores_botoes"
         app:showAsAction="never"/>
     <item
         android:id="@+id/item5"
-        android:title="Dados arduino na tela"
+        android:title="@string/Dados_arduino"
         app:showAsAction="never">
         <menu>
             <item
                 android:id="@+id/item6"
-                android:title="Mostrar"/>
-            <item
-                android:id="@+id/item7"
-                android:title="Ocultar"/>
+                android:title=""/>
+<!--             <item -->
+<!--                 android:id="@+id/item7" -->
+<!--                 android:title="Ocultar"/> -->
             
         </menu>
     </item>
     <item
         android:id="@+id/item8"
-        android:title="Sobre o App"
+        android:title="@string/sobre_app_botao"
         app:showAsAction="never"/>
 
 </menu>

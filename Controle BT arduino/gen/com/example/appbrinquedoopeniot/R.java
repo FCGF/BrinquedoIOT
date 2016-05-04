@@ -2296,8 +2296,7 @@ containing a value of this type.
         public static final int item3=0x7f09009c;
         public static final int item5=0x7f09009d;
         public static final int item6=0x7f09009e;
-        public static final int item7=0x7f09009f;
-        public static final int item8=0x7f0900a0;
+        public static final int item8=0x7f09009f;
         public static final int line1=0x7f090092;
         public static final int line3=0x7f090096;
         public static final int listMode=0x7f09000a;
@@ -2358,7 +2357,7 @@ containing a value of this type.
         public static final int txtArduino3=0x7f090088;
         public static final int up=0x7f090001;
         public static final int useLogo=0x7f090013;
-        public static final int valores_padrao=0x7f0900a1;
+        public static final int valores_padrao=0x7f0900a0;
         public static final int withText=0x7f09001d;
         public static final int wrap_content=0x7f090009;
     }
@@ -2449,6 +2448,8 @@ containing a value of this type.
         public static final int values_bottons=0x7f0c0004;
     }
     public static final class string {
+        public static final int Dados_arduino=0x7f0a001c;
+        public static final int Valores_botoes=0x7f0a001e;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0a0001;
@@ -2519,6 +2520,7 @@ containing a value of this type.
         public static final int hello_world=0x7f0a0015;
         public static final int joystick_bt_connect=0x7f0a001a;
         public static final int sobre_app=0x7f0a0016;
+        public static final int sobre_app_botao=0x7f0a001d;
         /**  Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated. May need to be localized

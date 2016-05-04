@@ -98,9 +98,11 @@
 
                     <EditText
                         android:id="@+id/EditTextX"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="e" />
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -142,9 +144,11 @@
 
                     <EditText
                         android:id="@+id/EditTextY"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="f" />
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -186,8 +190,9 @@
 
                     <EditText
                         android:id="@+id/EditTextZ"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="g" />
                 </LinearLayout>
             </LinearLayout>
@@ -230,8 +235,9 @@
 
                     <EditText
                         android:id="@+id/EditTextA"
-                        android:layout_width="match_parent"
+                       android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="h" />
                 </LinearLayout>
             </LinearLayout>
@@ -274,8 +280,9 @@
 
                     <EditText
                         android:id="@+id/EditTextB"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="i" />
                 </LinearLayout>
             </LinearLayout>
@@ -318,8 +325,9 @@
 
                     <EditText
                         android:id="@+id/EditTextC"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="j" />
                 </LinearLayout>
             </LinearLayout>
@@ -362,8 +370,9 @@
 
                     <EditText
                         android:id="@+id/EditTextFrente"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="a" />
                 </LinearLayout>
             </LinearLayout>
@@ -380,8 +389,9 @@
 
                     <TextView
                         android:id="@+id/txtArduino02"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="Direita"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
                 </LinearLayout>
@@ -406,8 +416,9 @@
 
                     <EditText
                         android:id="@+id/EditTextDireita"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="b" />
                 </LinearLayout>
             </LinearLayout>
@@ -450,8 +461,9 @@
 
                     <EditText
                         android:id="@+id/EditTextEsquerda"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="c" />
                 </LinearLayout>
             </LinearLayout>
@@ -494,8 +506,9 @@
 
                     <EditText
                         android:id="@+id/EditTextTras"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="d" />
                 </LinearLayout>
             </LinearLayout>
