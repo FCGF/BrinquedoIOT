@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 public class Values_bottons extends Activity {
-	public static EditText EditFrente, EditDireita, EditEsquerda, EditTras, EditX, EditY, EditZ, EditA, EditB, EditC;
+	public static EditText EditFrente, EditDireita, EditEsquerda, EditTras, EditX, EditY, EditZ, EditA, EditB, EditC,EditConteudoAVoltar;
 	public static final String PREFS_NAME = "Preferences";
 	public static final int VALORES = 4;
 	
@@ -33,6 +33,7 @@ public class Values_bottons extends Activity {
 		EditA = (EditText) findViewById(R.id.EditTextA);
 		EditB = (EditText) findViewById(R.id.EditTextB);
 		EditC = (EditText) findViewById(R.id.EditTextC);
+		EditConteudoAVoltar =(EditText) findViewById(R.id.EditTextConteudoAVoltar);
 
 		EditFrente.setText(extras.getString("frente"));
 		EditDireita.setText(extras.getString("direita"));
@@ -44,6 +45,7 @@ public class Values_bottons extends Activity {
 		EditA.setText(extras.getString("a"));
 		EditB.setText(extras.getString("b"));
 		EditC.setText(extras.getString("c"));
+		EditConteudoAVoltar.setText(extras.getString("conteudoAVoltar"));
 
 	}
 	
@@ -59,6 +61,7 @@ public class Values_bottons extends Activity {
 		valores.putExtra("a", EditA.getText().toString());
 		valores.putExtra("b", EditB.getText().toString());
 		valores.putExtra("c", EditC.getText().toString());
+		valores.putExtra("conteudoAVoltar", EditConteudoAVoltar.getText().toString());
 		
 		
 		return valores;
@@ -75,6 +78,7 @@ public void valoresPadrao(){
 	EditA.setText("h");
 	EditB.setText("i");
 	EditC.setText("j");
+	EditConteudoAVoltar.setText("0");
 		
 	}
 

@@ -11,6 +11,6 @@
     <string name="title_activity_info_fragment">InfoFragment</string>
     <string name="Dados_arduino">Dados arduino na tela</string>
     <string name="sobre_app_botao">Sobre o app</string>
-    <string name="Valores_botoes">Valores do Botoes</string>
+    <string name="Valores_botoes">Valores dos Botoes</string>
 
 </resources>

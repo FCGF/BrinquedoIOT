@@ -30,7 +30,7 @@ import android.widget.Toast;
 @SuppressLint({  "HandlerLeak", "ClickableViewAccessibility" })
 public class MainActivity extends  FragmentActivity {
 
-	String frente, direita, esquerda, tras, x, y, z, a, b, c;
+	String frente, direita, esquerda, tras, x, y, z, a, b, c,conteudoAVoltar;
 	Button btnConectar, btnFrente, btnDireita, btnEsquerda, btnTras, btn1, btn2, btn3, btn4, btn5, btn6;
 	TextView txtArduino01, txtArduino02, txtArduino03, txtArduino04, txtArduino05,txtArduino06,txtArduino07;
 	View dados;
@@ -151,6 +151,7 @@ public class MainActivity extends  FragmentActivity {
 		a = settings.getString("a", "");
 		b = settings.getString("b", "");
 		c = settings.getString("c", "");
+		conteudoAVoltar = settings.getString("conteudoAVoltar", "");
 	}
 
 	
@@ -200,7 +201,7 @@ public class MainActivity extends  FragmentActivity {
 		        }
 				if(event.getAction() == MotionEvent.ACTION_UP){   
 					Message msg = Message.obtain();
-					msg.obj = "j";
+					msg.obj = conteudoAVoltar;
 					writeHandler.sendMessage(msg);
 		        }
 			}else{
@@ -345,6 +346,7 @@ public class MainActivity extends  FragmentActivity {
 				a = data.getStringExtra("a");
 				b = data.getStringExtra("b");
 				c = data.getStringExtra("c");
+				conteudoAVoltar = data.getStringExtra("conteudoAVoltar");
 			} else {
 				Toast.makeText(getApplicationContext(), "Mudanças nao salvas", Toast.LENGTH_LONG).show();
 			}
@@ -396,6 +398,7 @@ public class MainActivity extends  FragmentActivity {
 			Value_Bottons.putExtra("a", a);
 			Value_Bottons.putExtra("b", b);
 			Value_Bottons.putExtra("c", c);
+			Value_Bottons.putExtra("conteudoAVoltar", conteudoAVoltar);
 			startActivityForResult(Value_Bottons, VALORES);
 
 			break;
@@ -473,6 +476,7 @@ public class MainActivity extends  FragmentActivity {
 		editor.putString("a", a);
 		editor.putString("b", b);
 		editor.putString("c", c);
+		editor.putString("conteudoAVoltar", conteudoAVoltar);
 
 		// Confirma a gravação dos dados
 		editor.commit();
