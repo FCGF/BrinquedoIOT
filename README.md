@@ -1,4 +1,4 @@
-# BrinquedoIOT
+﻿# BrinquedoIOT
 Aplicação com joystick para controlar robos trekking(ou carrinhos)..
 
 Possibilidade de conectar com qualquer modulo bluetooth serial que ja esteja pareado com o aparelho.
@@ -7,7 +7,7 @@ Possibilidade de conectar com qualquer modulo bluetooth serial que ja esteja par
 
 Para desenvolver a aplicação, foi usado o ambiente de trabalho do eclipse usando ADT-plugin.
 
-<a href="https://github.com/davidfstr/rdiscount" title="RDiscount">Link para instalação</a>
+<a href="http://www.programarandroid.com.br/2014/11/como-instalar-o-eclipse-ide-e.html">Link para instalação</a>
 
 ## Instruções para importar projeto e demais dependencias##
 
