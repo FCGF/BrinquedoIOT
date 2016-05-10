@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 public class Values_bottons extends Activity {
@@ -21,7 +22,7 @@ public class Values_bottons extends Activity {
 		ActionBar ab = getActionBar();
 		ab.setDisplayHomeAsUpEnabled(true);
 		Bundle extras = getIntent().getExtras();
-		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 		EditFrente = (EditText) findViewById(R.id.EditTextFrente);
 		EditDireita = (EditText) findViewById(R.id.EditTextDireita);

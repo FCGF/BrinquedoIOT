@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.app.ActionBar;
 import android.app.ListActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class PairedDevices extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		/*
 		 * Esse trecho não é essencial, mas da um melhor visual a  lista.
 		 * Adiciona um titulo a lista de dispositivos pareados utilizando o

@@ -517,7 +517,7 @@
                 android:id="@+id/TextView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="============================="
+                android:text="====================="
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <LinearLayout
