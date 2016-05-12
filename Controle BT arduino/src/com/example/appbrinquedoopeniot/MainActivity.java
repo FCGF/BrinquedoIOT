@@ -81,6 +81,8 @@ public class MainActivity extends FragmentActivity {
 
 		// Vereficamos se o aparelho possui adaptador Bluetooth
 
+		
+		interromperBluetooth();
 		resgatarValoresBotoes();
 		referenciarElementosTela();
 
@@ -147,13 +149,20 @@ public class MainActivity extends FragmentActivity {
 				Intent searchPairedDevicesIntent = new Intent(this, PairedDevices.class);
 				startActivityForResult(searchPairedDevicesIntent, SELECT_PAIRED_DEVICE);
 			} else {
-				btnConectar.setText("Conectar");
-
-				btt.interrupt();
-				btt = null;
+				interromperBluetooth();
 			}
 
 		}
+	}
+	
+	public void interromperBluetooth(){
+		if(btt != null){
+			btnConectar.setText("Conectar");
+
+			btt.interrupt();
+			btt = null;
+		}
+		
 	}
 
 	public void connectButtonPressed(View v) {
@@ -378,6 +387,7 @@ public class MainActivity extends FragmentActivity {
 		case android.R.id.home:
 			Toast.makeText(this, "Sair", Toast.LENGTH_SHORT).show();
 
+			interromperBluetooth();
 			finish();
 
 			break;
@@ -480,6 +490,13 @@ public class MainActivity extends FragmentActivity {
 	public void onResume() {
 		super.onResume();
 		acaoDosBotoes();
+	}
+	
+	@Override
+	public void onStop() {
+		super.onStop();;
+		//interromperBluetooth();
+		
 	}
 
 	@Override

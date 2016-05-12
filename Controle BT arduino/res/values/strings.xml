@@ -3,7 +3,7 @@
 
     <string name="app_name">Controle BT arduino</string>
     <string name="hello_world">Hello world!</string>
-    <string name="sobre_app">Grupo de robotica da catolica de SC</string>
+    <string name="sobre_app">Grupo de robótica da cátolica de SC</string>
     <string name="action_settings">Salvar e Voltar</string>
     <string name="title_activity_values_bottons">Valores dos botoes</string>
     <string name="title_activity_paired_devices">Dispositivos pareados</string>

@@ -23,6 +23,7 @@ public class Values_bottons extends Activity {
 		ab.setDisplayHomeAsUpEnabled(true);
 		Bundle extras = getIntent().getExtras();
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 		
 		EditFrente = (EditText) findViewById(R.id.EditTextFrente);
 		EditDireita = (EditText) findViewById(R.id.EditTextDireita);

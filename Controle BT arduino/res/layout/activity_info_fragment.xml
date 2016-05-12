@@ -16,11 +16,7 @@
         android:textColor="@color/MaterialLightGray"
         android:textSize="24.0sp" />
 
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
+    
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,15 +27,42 @@
                 android:layout_height="75.0dip"
                 android:orientation="horizontal" >
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="75.0dip"
-                    android:layout_marginBottom="10.0dip"
-                    android:layout_weight="1.0"
-                    android:gravity="center_vertical"
-                    android:text="Controle BT arduino\nVersion: 1.0\n\nigor.fachini@unerj.br"
-                    android:textColor="@color/MaterialDarkGray"
-                    android:textSize="14.0sp" />
+                <ScrollView
+                    android:id="@+id/scrollView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.8"
+                    android:scrollbarAlwaysDrawVerticalTrack="true" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:scrollbarAlwaysDrawVerticalTrack="true" >
+
+                        <TextView
+                            android:id="@+id/TextView02"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:text="Controle BT arduino\nVersion: 1.0" />
+
+                        <TextView
+                            android:id="@+id/TextView01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:text="\n\nDesenvolvido pelo acâdemico\nIgor Fachini" />
+
+                        <TextView
+                            android:id="@+id/textView1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:text="\nigor.fachini@catolicasc.org.br" />
+
+                    </LinearLayout>
+                </ScrollView>
 
                 <ImageView
                     android:layout_width="fill_parent"
@@ -78,6 +101,6 @@
             </LinearLayout>
         </LinearLayout>
 
-    </ScrollView>
+    
 
 </LinearLayout>
