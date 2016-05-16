@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Controle BT arduino</string>
+    <string name="app_name">CAB-Controle Arduino Bluetooth</string>
     <string name="hello_world">Hello world!</string>
-    <string name="sobre_app">Grupo de robótica da cátolica de SC</string>
+    <string name="sobre_app">Grupo de Robótica da Cátolica de Santa Catarina</string>
     <string name="action_settings">Salvar e Voltar</string>
     <string name="title_activity_values_bottons">Valores dos botoes</string>
     <string name="title_activity_paired_devices">Dispositivos pareados</string>

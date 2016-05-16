@@ -11,11 +11,12 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginBottom="25.0dip"
+        android:gravity="center"
         android:text="@string/sobre_app"
         android:textColor="@color/MaterialLightGray"
         android:textSize="24.0sp" />
-
     
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,8 +31,7 @@
                 <ScrollView
                     android:id="@+id/scrollView2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.8"
+                    android:layout_height="match_parent"
                     android:scrollbarAlwaysDrawVerticalTrack="true" >
 
                     <LinearLayout
@@ -40,64 +40,95 @@
                         android:orientation="vertical"
                         android:scrollbarAlwaysDrawVerticalTrack="true" >
 
-                        <TextView
-                            android:id="@+id/TextView02"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="20.0dip"
                             android:layout_weight="1.0"
-                            android:text="Controle BT arduino\nVersion: 1.0" />
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal" >
 
-                        <TextView
-                            android:id="@+id/TextView01"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1.0"
-                            android:text="\n\nDesenvolvido pelo acâdemico\nIgor Fachini" />
+                            <TextView
+                                android:id="@+id/TextView02"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.0"
+                                android:text="CAB-Controle Arduino Bluetooth\nVersion: 1.0" />
 
-                        <TextView
-                            android:id="@+id/textView1"
-                            android:layout_width="wrap_content"
+                            <ImageView
+                                android:layout_width="164dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:src="@drawable/ic_launcher" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10.0dip"
+                            android:layout_weight="1.0"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal" >
+
+                            <Button
+                                android:id="@+id/facebookBtn"
+                                android:layout_width="40.0dip"
+                                android:layout_height="40.0dip"
+                                android:layout_margin="5.0dip"
+                                android:background="@drawable/facebook_ico" />
+
+                            <Button
+                                android:id="@+id/googleBtn"
+                                android:layout_width="40.0dip"
+                                android:layout_height="40.0dip"
+                                android:layout_margin="5.0dip"
+                                android:background="@drawable/gplus_ico" />
+
+                            <Button
+                                android:id="@+id/googlePlayBtn"
+                                android:layout_width="40.0dip"
+                                android:layout_height="40.0dip"
+                                android:layout_margin="5.0dip"
+                                android:background="@drawable/catolica_ico" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1.0"
-                            android:text="\nigor.fachini@catolicasc.org.br" />
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/TextView01"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.0"
+                                android:gravity="center"
+                                android:text="\n\nDesenvolvido pelo acâdemico\nIgor Fachini" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/textViewLinkEmail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.0"
+                                android:gravity="center"
+                                android:text="\nigor.fachini@catolicasc.org.br" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
                 </ScrollView>
-
-                <ImageView
-                    android:layout_width="fill_parent"
-                    android:layout_height="75.0dip"
-                    android:layout_weight="1.8"
-                    android:src="@drawable/ic_launcher" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20.0dip"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal" >
-
-                <Button
-                    android:id="@+id/facebookBtn"
-                    android:layout_width="40.0dip"
-                    android:layout_height="40.0dip"
-                    android:layout_margin="5.0dip"
-                    android:background="@drawable/facebook_ico" />
-
-                <Button
-                    android:id="@+id/googleBtn"
-                    android:layout_width="40.0dip"
-                    android:layout_height="40.0dip"
-                    android:layout_margin="5.0dip"
-                    android:background="@drawable/gplus_ico" />
-
-                <Button
-                    android:id="@+id/googlePlayBtn"
-                    android:layout_width="40.0dip"
-                    android:layout_height="40.0dip"
-                    android:layout_margin="5.0dip"
-                    android:background="@drawable/gplay_ico" />
             </LinearLayout>
         </LinearLayout>
 

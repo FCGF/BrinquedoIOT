@@ -182,6 +182,8 @@ public class MainActivity extends FragmentActivity {
 		}
 
 	}
+	
+
 
 	public void acaoDosBotoes() {
 		btnFrente.setOnTouchListener(new BotaoListener(frente));
